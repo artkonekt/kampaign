@@ -1,0 +1,2 @@
+# kampaign
+Simple newsletter manager
