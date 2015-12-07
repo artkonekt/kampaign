@@ -1,0 +1,21 @@
+{
+    "name": "artkonekt/kampaign",
+    "description": "Simple newsletter campaign manager",
+    "license": "MIT",
+    "keywords": ["kampaign"],
+    "authors": [
+        {
+            "name": "Lajos Fazakas",
+            "email": "lajos@artkonekt.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Artkonekt\\Kampaign\\": "src"
+        }
+    }
+}
