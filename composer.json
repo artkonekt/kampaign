@@ -17,5 +17,10 @@
         "psr-4": {
             "Artkonekt\\Kampaign\\": "src"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Artkonekt\\Kampaign\\Tests\\": "tests/unit"
+        }
     }
 }
