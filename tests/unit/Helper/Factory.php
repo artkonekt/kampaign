@@ -36,11 +36,13 @@ class Factory
      * @param int $maxImpressionsPerDay
      * @param int $maxImpressions
      *
+     * @param int $id The ID of the campaign, is equal to 1 if not specified
+     *
      * @return \Artkonekt\Kampaign\Campaign
      */
-    public static function cci($maxImpressionsPerDay, $maxImpressions)
+    public static function cci($maxImpressionsPerDay, $maxImpressions, $id = 1)
     {
-        return new Campaign(1, 'TestCampaign', 'Test Description', true, new DateTime(), new DateTime(), $maxImpressions, $maxImpressionsPerDay);
+        return new Campaign($id, 'TestCampaign', 'Test Description', true, new DateTime(), new DateTime(), $maxImpressions, $maxImpressionsPerDay);
     }
 
     /**
@@ -69,11 +71,13 @@ class Factory
      *
      * @param bool $isShowingAllowed
      *
+     * @param int  $campaignId
+     *
      * @return \Artkonekt\Kampaign\Impressions
      */
-    public static function cici($maxImpressionsPerDay, $maxImpressions, $impressionsToday, $impressionsTotal, $isShowingAllowed = true)
+    public static function cici($maxImpressionsPerDay, $maxImpressions, $impressionsToday, $impressionsTotal, $isShowingAllowed = true, $campaignId = 1)
     {
-        $c = self::cci($maxImpressionsPerDay, $maxImpressions);
+        $c = self::cci($maxImpressionsPerDay, $maxImpressions, $campaignId);
         return self::ci($c, $impressionsToday, $impressionsTotal, $isShowingAllowed);
     }
 }

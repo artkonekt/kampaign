@@ -54,6 +54,26 @@ class Impressions
     }
 
     /**
+     * Return the ID of the campaign.
+     *
+     * @return int
+     */
+    public function getCampaignId()
+    {
+        return $this->campaign->getId();
+    }
+
+    /**
+     * Returns the campaign for the impressions.
+     *
+     * @return \Artkonekt\Kampaign\Campaign
+     */
+    public function getCampaign()
+    {
+        return $this->campaign;
+    }
+
+    /**
      * Disables future impressions.
      */
     public function disable()

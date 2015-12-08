@@ -29,7 +29,7 @@ interface ImpressionsRepositoryInterface
      *
      * @return Impressions
      */
-    public function findImpressionsForCampaign(Campaign $campaign);
+    public function findImpressionsByCampaign(Campaign $campaign);
 
     /**
      * Saves an Impressions instance.

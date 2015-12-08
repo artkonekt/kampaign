@@ -13,69 +13,87 @@
 namespace Artkonekt\Kampaign\Tests;
 
 
+use Artkonekt\Kampaign\Campaign;
 use Artkonekt\Kampaign\CookieImpressionsRepository;
 use Artkonekt\Kampaign\Impressions;
-use Artkonekt\Kampaign\Tests\Helper\CookieSimulator;
 use Artkonekt\Kampaign\Tests\Helper\Factory;
 use PHPUnit_Framework_Error_Warning;
 use PHPUnit_Framework_TestCase;
 
 class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @var CookieImpressionsRepository
+     */
+    private $repo;
+
     public function setUp()
     {
         parent::setUp();
-        CookieSimulator::emptyCookies();
+        $_COOKIE = [];
+        $this->repo = new CookieImpressionsRepository();
     }
+
+    private function save(Impressions $impressions)
+    {
+        try {
+            $this->repo->save($impressions);
+        } catch (PHPUnit_Framework_Error_Warning $e) {}
+    }
+
+    private function findByCampaign(Campaign $campaign)
+    {
+        return $this->repo->findImpressionsByCampaign($campaign);
+    }
+
 
     public function testFindExistingImpressions()
     {
-        $c = Factory::cci(3, 10);
-        CookieSimulator::setCookie(1, 2);
-        $repository = new CookieImpressionsRepository($c);
+        $impressions = Factory::cici(3, 10, 1, 2, true, 567);
 
-        $impressions = $repository->findImpressionsForCampaign($c);
+        $this->save($impressions);
+
+        $impressions = $this->findByCampaign($impressions->getCampaign());
 
         $this->assertEquals(1, $impressions->getForToday());
         $this->assertEquals(2, $impressions->getTotal());
         $this->assertTrue($impressions->isShowingAllowed());
+        $this->assertEquals(567, $impressions->getCampaignId());
     }
 
     public function testFindExistingImpressionsWithShowingDisabled()
     {
-        $c = Factory::cci(3, 10);
-        CookieSimulator::setCookie(1, 2, false);
-        $repository = new CookieImpressionsRepository($c);
+        $impressions = Factory::cici(3, 10, 1, 2, false);
 
-        $impressions = $repository->findImpressionsForCampaign($c);
+        $this->save($impressions);
+
+        $impressions = $this->findByCampaign($impressions->getCampaign());
 
         $this->assertEquals(1, $impressions->getForToday());
         $this->assertEquals(2, $impressions->getTotal());
         $this->assertFalse($impressions->isShowingAllowed());
     }
 
+
     public function testFindNonExistingImpressionsReturnsNull()
     {
         $c = Factory::cci(3, 10);
-        $repository = new CookieImpressionsRepository($c);
+        $impressions = $this->findByCampaign($c);
 
-        $this->assertNull($repository->findImpressionsForCampaign($c));
+        $this->assertNull($impressions);
     }
 
     public function testSaveExistingImpressions()
     {
-        $c = Factory::cci(3, 10);
-        CookieSimulator::setCookie(1, 2);
-        $repository = new CookieImpressionsRepository($c);
+        $impressions = Factory::cici(3, 10, 1, 2);
+        $this->save($impressions);
 
-        $impressions = $repository->findImpressionsForCampaign($c);
+        $impressions = $this->findByCampaign($impressions->getCampaign());
         $impressions->increment();
 
-        try {
-            $repository->save($impressions);
-        } catch (PHPUnit_Framework_Error_Warning $e) {}
+        $this->save($impressions);
 
-        $impressions = $repository->findImpressionsForCampaign($c);
+        $impressions = $this->findByCampaign($impressions->getCampaign());
 
         $this->assertEquals(2, $impressions->getForToday());
         $this->assertEquals(3, $impressions->getTotal());
@@ -84,16 +102,14 @@ class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
 
     public function testSaveNotExistingImpressions()
     {
-        $c = Factory::cci(3, 10);
-        $repository = new CookieImpressionsRepository($c);
+        $campaignId = 555;
+        $c = Factory::cci(3, 10, $campaignId);
+        $this->assertNull($this->findByCampaign($c));
 
-        $impressions = new Impressions($c, 6, 8, true);
+        $impressions = Factory::cici(3, 10, 6, 8, true, $campaignId);
+        $this->save($impressions);
 
-        try {
-            $repository->save($impressions);
-        } catch (PHPUnit_Framework_Error_Warning $e) {}
-
-        $impressions = $repository->findImpressionsForCampaign($c);
+        $impressions = $this->findByCampaign($impressions->getCampaign());
 
         $this->assertEquals(6, $impressions->getForToday());
         $this->assertEquals(8, $impressions->getTotal());
@@ -107,10 +123,41 @@ class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
             'PHPUnit_Framework_Error_Warning', 'Cannot modify header information - headers already sent'
         );
 
-        $c = Factory::cci(3, 10);
-        $repository = new CookieImpressionsRepository($c);
+        $impressions = Factory::cici(3, 10, 1, 2);
+        $this->repo->save($impressions);
+    }
 
-        $impressions = new Impressions($c, 6, 8, true);
-        $repository->save($impressions);
+    public function testSupportsMultipleCampaigns()
+    {
+        $impressions1 = Factory::cici(3, 10, 6, 8, true, 1);
+        $impressions2 = Factory::cici(3, 10, 6, 8, true, 2);
+
+        $this->save($impressions1);
+        $this->save($impressions2);
+
+        $this->assertNotNull($this->findByCampaign($impressions1->getCampaign()));
+        $this->assertNotNull($this->findByCampaign($impressions2->getCampaign()));
+    }
+
+    public function testMultipleCampaignsDataAreOk()
+    {
+        $i1 = Factory::cici(3, 10, 2, 8, false, 555);
+        $i2 = Factory::cici(2, 8, 1, 3, true, 556);
+
+        $this->save($i1);
+        $this->save($i2);
+
+        $impressions1 = $this->findByCampaign($i1->getCampaign());
+        $impressions2 = $this->findByCampaign($i2->getCampaign());
+
+        $this->assertEquals(2, $impressions1->getForToday());
+        $this->assertEquals(8, $impressions1->getTotal());
+        $this->assertFalse($impressions1->isShowingAllowed());
+        $this->assertEquals(555, $impressions1->getCampaignId());
+
+        $this->assertEquals(1, $impressions2->getForToday());
+        $this->assertEquals(3, $impressions2->getTotal());
+        $this->assertTrue($impressions2->isShowingAllowed());
+        $this->assertEquals(556, $impressions2->getCampaignId());
     }
 }

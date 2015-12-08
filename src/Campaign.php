@@ -93,6 +93,16 @@ class Campaign
     }
 
     /**
+     * Returns the ID of the campaign.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * Returns whether the campaign is active.
      *
      * @return bool

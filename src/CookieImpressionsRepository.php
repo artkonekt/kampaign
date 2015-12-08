@@ -20,6 +20,7 @@ class CookieImpressionsRepository implements ImpressionsRepositoryInterface
     const COOKIE_NAME = 'nci';
     const TOTAL_IMPRESSIONS_KEY = 't';
     const IS_SHOWING_ALLOWED_KEY = 'a';
+    const CAMPAIGN_ID_KEY = 'c';
 
     const COOKIE_LIFETIME_DAYS = 365;
 
@@ -28,13 +29,14 @@ class CookieImpressionsRepository implements ImpressionsRepositoryInterface
      *
      * @return Impressions
      */
-    public function findImpressionsForCampaign(Campaign $campaign)
+    public function findImpressionsByCampaign(Campaign $campaign)
     {
-        if (empty($this->getData())) {
+        $data = $this->getData($campaign->getId());
+        if (empty($data)) {
             return null;
         }
 
-        return new Impressions($campaign, $this->getImpressionsForToday(), $this->getTotalImpressions(), $this->isShowingAllowed());
+        return new Impressions($campaign, $this->getImpressionsForToday($data), $this->getTotalImpressions($data), $this->isShowingAllowed($data));
     }
 
     /**
@@ -42,13 +44,17 @@ class CookieImpressionsRepository implements ImpressionsRepositoryInterface
      */
     public function save(Impressions $impressions)
     {
-        $data = [
+        $allData = $this->getAllData();
+
+        $array = [
             $this->getTodaysImpressionsKey() => $impressions->getForToday(),
             self::TOTAL_IMPRESSIONS_KEY => $impressions->getTotal(),
             self::IS_SHOWING_ALLOWED_KEY => $impressions->isShowingAllowed()
         ];
 
-        $_COOKIE[self::COOKIE_NAME] = json_encode($data);
+        $allData[$impressions->getCampaignId()] = $array;
+
+        $_COOKIE[self::COOKIE_NAME] = $this->encode($allData);
 
         setcookie(self::COOKIE_NAME, $_COOKIE[self::COOKIE_NAME], $this->getCookieLifetime(), '/');
     }
@@ -56,39 +62,58 @@ class CookieImpressionsRepository implements ImpressionsRepositoryInterface
     /**
      * @inheritdoc
      */
-    private function getImpressionsForToday()
+    private function getImpressionsForToday($data)
     {
-        $data = $this->getData();
-        $todaysImpressionsKey = $this->getTodaysImpressionsKey();
+        $todaysImpressionsKey = $this->getTodaysImpressionsKey($data);
         return isset($data[$todaysImpressionsKey]) ? $data[$todaysImpressionsKey] : 0;
     }
 
     /**
      * @inheritdoc
      */
-    private function getTotalImpressions()
+    private function getTotalImpressions($data)
     {
-        $data = $this->getData();
         return isset($data[self::TOTAL_IMPRESSIONS_KEY]) ? $data[self::TOTAL_IMPRESSIONS_KEY] : 0;
     }
 
     /**
      * @inheritdoc
      */
-    private function isShowingAllowed()
+    private function isShowingAllowed($data)
     {
-        $data = $this->getData();
         return isset($data[self::IS_SHOWING_ALLOWED_KEY]) ? $data[self::IS_SHOWING_ALLOWED_KEY] : true;
     }
 
     /**
-     * Returns an array which contains the data with the impressions for today and the total impressions.
+     * Returns an array which contains the data with the impressions data for a specific campaign.
+     *
+     * @param $campaignId
      *
      * @return array
      */
-    private function getData()
+    private function getData($campaignId)
     {
-        return isset($_COOKIE[self::COOKIE_NAME]) ? json_decode($_COOKIE[self::COOKIE_NAME], true) : [];
+        $allData = $this->getAllData();
+
+        if (!array_key_exists($campaignId, $allData)) {
+            return [];
+        }
+
+        return $allData[$campaignId];
+    }
+
+    /**
+     * Returns the array from the cookie which contains the impressions data for all campaigns.
+     *
+     * @return array
+     */
+    private function getAllData()
+    {
+        if (!isset($_COOKIE[self::COOKIE_NAME])) {
+            return [];
+        }
+
+        return $this->decode($_COOKIE[self::COOKIE_NAME], true);
     }
 
     /**
@@ -110,5 +135,29 @@ class CookieImpressionsRepository implements ImpressionsRepositoryInterface
     private function getCookieLifetime()
     {
         return self::COOKIE_LIFETIME_DAYS * 24 * 60 * 60;
+    }
+
+    /**
+     * Encodes the cookie data.
+     *
+     * @param $data
+     *
+     * @return string
+     */
+    private function encode($data)
+    {
+        return base64_encode(json_encode($data));
+    }
+
+    /**
+     * Decodes the cookie data.
+     *
+     * @param $data
+     *
+     * @return mixed
+     */
+    private function decode($data)
+    {
+        return json_decode(base64_decode($data), true);
     }
 }
