@@ -136,7 +136,7 @@ class CookieImpressionsRepository implements ImpressionsRepositoryInterface
     private function getTodaysImpressionsKey()
     {
         $today = new \DateTime();
-        return $today->format('Y-m-d');
+        return $today->format('m-d');
     }
 
     /**
