@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains class PresenterTest
+ * Contains class PopupInitiatorTest
  *
  * @package     unit
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
@@ -13,7 +13,7 @@
 namespace Artkonekt\Kampaign\Tests;
 
 
-class PresenterTest extends \PHPUnit_Framework_TestCase
+class PopupRendererTest extends \PHPUnit_Framework_TestCase
 {
     //TODO: test with mocks
 
