@@ -101,4 +101,22 @@ class ImpressionsTest extends PHPUnit_Framework_TestCase
         $impressions = Factory::cici(3, 10, 1, 2);
         $this->assertEquals(1, $impressions->getCampaignId());
     }
+
+    public function testImpressionsCanBeIncreasedToday()
+    {
+        $impressions = Factory::cici(3, 10, 1, 2, true);
+        $this->assertTrue($impressions->canBeIncreasedToday());
+    }
+
+    public function testImpressionsCannotBeIncreasedTodayIfShowingIsNotAllowed()
+    {
+        $impressions = Factory::cici(3, 10, 1, 2, false);
+        $this->assertFalse($impressions->canBeIncreasedToday());
+    }
+
+    public function testImpressionsCannotBeIncreasedTodayIfHasNoRemainingImpressionsForToday()
+    {
+        $impressions = Factory::cici(3, 10, 3, 3, true);
+        $this->assertFalse($impressions->canBeIncreasedToday());
+    }
 }

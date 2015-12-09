@@ -91,13 +91,24 @@ class Impressions
     }
 
     /**
-     * Returns whether (future) showing of the campaign is allowed.
+     * Returns whether showing of the campaign is allowed.
      *
      * @return bool
      */
     public function isShowingAllowed()
     {
         return $this->isShowingAllowed;
+    }
+
+    /**
+     * Return whether the impression for today can be increased. In other words it returns whether we can show the campaign
+     * today for our user.
+     *
+     * @return bool
+     */
+    public function canBeIncreasedToday()
+    {
+        return ($this->isShowingAllowed() && $this->hasRemainingForToday());
     }
 
     /**

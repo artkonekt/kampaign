@@ -27,6 +27,9 @@ class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
      */
     private $repo;
 
+    /**
+     * Initialize the repo and clean the $_COOKIE superglobal before each test.
+     */
     public function setUp()
     {
         parent::setUp();
@@ -34,11 +37,25 @@ class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
         $this->repo = new CookieImpressionsRepository();
     }
 
+    /**
+     * Saves an impression with the repo.
+     *
+     * The call to save() is wrapped in a try..catch block, because we also set a cookie in the save method, causing
+     * phpunit to emit an exception.
+     *
+     * @param \Artkonekt\Kampaign\Impressions $impressions
+     *
+     * @throws \PHPUnit_Framework_Error_Warning If it is not caused by the header emitting setcookie() method.
+     */
     private function save(Impressions $impressions)
     {
         try {
             $this->repo->save($impressions);
-        } catch (PHPUnit_Framework_Error_Warning $e) {}
+        } catch (PHPUnit_Framework_Error_Warning $e) {
+            if (0 !== strpos($e->getMessage(), 'Cannot modify header information - headers already sent')) {
+                throw $e;
+            }
+        }
     }
 
     private function findByCampaign(Campaign $campaign)

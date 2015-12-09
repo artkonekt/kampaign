@@ -56,11 +56,15 @@ class CookieImpressionsRepository implements ImpressionsRepositoryInterface
 
         $_COOKIE[self::COOKIE_NAME] = $this->encode($allData);
 
-        setcookie(self::COOKIE_NAME, $_COOKIE[self::COOKIE_NAME], $this->getCookieLifetime(), '/');
+        setcookie(self::COOKIE_NAME, $_COOKIE[self::COOKIE_NAME], time() + $this->getCookieLifetime(), '/');
     }
 
     /**
-     * @inheritdoc
+     * Returns the impressions for today from the data.
+     *
+     * @param array $data
+     *
+     * @return int
      */
     private function getImpressionsForToday($data)
     {
@@ -69,7 +73,11 @@ class CookieImpressionsRepository implements ImpressionsRepositoryInterface
     }
 
     /**
-     * @inheritdoc
+     * Returns the total impressions from the data.
+     *
+     * @param array $data
+     *
+     * @return int
      */
     private function getTotalImpressions($data)
     {
@@ -77,7 +85,11 @@ class CookieImpressionsRepository implements ImpressionsRepositoryInterface
     }
 
     /**
-     * @inheritdoc
+     * Returns if showing is allowed from the data.
+     *
+     * @param array $data
+     *
+     * @return bool
      */
     private function isShowingAllowed($data)
     {
