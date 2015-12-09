@@ -40,12 +40,12 @@ class Impressions
     /**
      * UserImpressions constructor.
      *
-     * @param Campaign $campaign
-     * @param int      $today
-     * @param int      $total
-     * @param          $isShowingAllowed
+     * @param TrackableCampaign                                                  $campaign
+     * @param int                                                                $today
+     * @param int                                                                $total
+     * @param                                                                    $isShowingAllowed
      */
-    public function __construct(Campaign $campaign, $today, $total, $isShowingAllowed)
+    public function __construct(TrackableCampaign $campaign, $today, $total, $isShowingAllowed)
     {
         $this->isShowingAllowed = $isShowingAllowed;
         $this->campaign = $campaign;
@@ -58,9 +58,9 @@ class Impressions
      *
      * @return int
      */
-    public function getCampaignId()
+    public function getCampaignTrackingId()
     {
-        return $this->campaign->getId();
+        return $this->campaign->getTrackingId();
     }
 
     /**

@@ -10,14 +10,15 @@
  * @version     2015-12-07
  */
 
-namespace Artkonekt\Kampaign;
+namespace Artkonekt\Kampaign\Tests\Doubles;
 
+use Artkonekt\Kampaign\TrackableCampaign;
 use DateTime;
 
 /**
  * Represents a campaign entity.
  */
-class Campaign
+class Campaign implements TrackableCampaign
 {
     /**
      * @var int
@@ -146,5 +147,16 @@ class Campaign
     public function getMaxImpressions()
     {
         return $this->maxImpressions;
+    }
+
+    /**
+     * Returns the tracking ID of the campaign. It should be unique.
+     * A common way to implement it is to just return the numeric ID of the campaign entity.
+     *
+     * @return string
+     */
+    public function getTrackingId()
+    {
+        return $this->getId();
     }
 }

@@ -17,7 +17,7 @@ use Artkonekt\Kampaign\JsGenerator\JsGeneratorInterface;
 class Presenter
 {
     /**
-     * @var \Artkonekt\Kampaign\Campaign
+     * @var TrackableCampaign
      */
     private $campaign;
 
@@ -44,14 +44,14 @@ class Presenter
     /**
      * CampaignPresenter constructor.
      *
-     * @param Campaign                       $campaign The campaign to be presented
+     * @param TrackableCampaign              $campaign The campaign to be presented
      * @param int                            $timeout  How many seconds after page load should the popup appear
      * @param string                         $url      The URL which renders the popup's contents
      * @param ImpressionsRepositoryInterface $impressionsRepository
      * @param JsGeneratorInterface           $jsGenerator
      */
     public function __construct(
-        Campaign $campaign,
+        TrackableCampaign $campaign,
         $timeout,
         $url,
         ImpressionsRepositoryInterface $impressionsRepository,
@@ -97,7 +97,7 @@ class Presenter
             return '';
         }
 
-        $js = $this->jsGenerator->getScript($this->campaign->getId(), $this->url, $this->timeout);
+        $js = $this->jsGenerator->getScript($this->campaign->getTrackingId(), $this->url, $this->timeout);
 
         return "<script>$js</script>";
     }

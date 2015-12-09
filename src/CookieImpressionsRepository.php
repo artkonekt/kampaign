@@ -29,9 +29,9 @@ class CookieImpressionsRepository implements ImpressionsRepositoryInterface
      *
      * @return Impressions
      */
-    public function findImpressionsByCampaign(Campaign $campaign)
+    public function findImpressionsByCampaign(TrackableCampaign $campaign)
     {
-        $data = $this->getData($campaign->getId());
+        $data = $this->getData($campaign->getTrackingId());
         if (empty($data)) {
             return null;
         }
@@ -52,7 +52,7 @@ class CookieImpressionsRepository implements ImpressionsRepositoryInterface
             self::IS_SHOWING_ALLOWED_KEY => $impressions->isShowingAllowed()
         ];
 
-        $allData[$impressions->getCampaignId()] = $array;
+        $allData[$impressions->getCampaignTrackingId()] = $array;
 
         $_COOKIE[self::COOKIE_NAME] = $this->encode($allData);
 

@@ -96,10 +96,10 @@ class ImpressionsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(3, $impressions->getTotal());
     }
 
-    public function testCampaignId()
+    public function testCampaignTrackingId()
     {
         $impressions = Factory::cici(3, 10, 1, 2);
-        $this->assertEquals(1, $impressions->getCampaignId());
+        $this->assertEquals(1, $impressions->getCampaignTrackingId());
     }
 
     public function testImpressionsCanBeIncreasedToday()

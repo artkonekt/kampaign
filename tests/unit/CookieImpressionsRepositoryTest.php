@@ -17,6 +17,7 @@ use Artkonekt\Kampaign\Campaign;
 use Artkonekt\Kampaign\CookieImpressionsRepository;
 use Artkonekt\Kampaign\Impressions;
 use Artkonekt\Kampaign\Tests\Helper\Factory;
+use Artkonekt\Kampaign\TrackableCampaign;
 use PHPUnit_Framework_Error_Warning;
 use PHPUnit_Framework_TestCase;
 
@@ -58,7 +59,7 @@ class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    private function findByCampaign(Campaign $campaign)
+    private function findByCampaign(TrackableCampaign $campaign)
     {
         return $this->repo->findImpressionsByCampaign($campaign);
     }
@@ -75,7 +76,7 @@ class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, $impressions->getForToday());
         $this->assertEquals(2, $impressions->getTotal());
         $this->assertTrue($impressions->isShowingAllowed());
-        $this->assertEquals(567, $impressions->getCampaignId());
+        $this->assertEquals(567, $impressions->getCampaignTrackingId());
     }
 
     public function testFindExistingImpressionsWithShowingDisabled()
@@ -170,11 +171,11 @@ class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(2, $impressions1->getForToday());
         $this->assertEquals(8, $impressions1->getTotal());
         $this->assertFalse($impressions1->isShowingAllowed());
-        $this->assertEquals(555, $impressions1->getCampaignId());
+        $this->assertEquals(555, $impressions1->getCampaignTrackingId());
 
         $this->assertEquals(1, $impressions2->getForToday());
         $this->assertEquals(3, $impressions2->getTotal());
         $this->assertTrue($impressions2->isShowingAllowed());
-        $this->assertEquals(556, $impressions2->getCampaignId());
+        $this->assertEquals(556, $impressions2->getCampaignTrackingId());
     }
 }

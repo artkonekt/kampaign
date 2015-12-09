@@ -12,8 +12,8 @@
 
 namespace Artkonekt\Kampaign\Tests\Helper;
 
-use Artkonekt\Kampaign\Campaign;
 use Artkonekt\Kampaign\Impressions;
+use Artkonekt\Kampaign\Tests\Doubles\Campaign;
 use DateTime;
 
 class Factory
