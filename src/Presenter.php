@@ -1,7 +1,7 @@
 <?php
-use Artkonekt\Kampaign\Campaign;
-use Artkonekt\Kampaign\Impressions;
-use Artkonekt\Kampaign\ImpressionsRepositoryInterface;
+
+namespace Artkonekt\Kampaign;
+
 use Artkonekt\Kampaign\JsGenerator\JsGeneratorInterface;
 
 /**
