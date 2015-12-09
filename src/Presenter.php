@@ -14,7 +14,7 @@ use Artkonekt\Kampaign\JsGenerator\JsGeneratorInterface;
  * @since       2015-12-09
  * @version     2015-12-09
  */
-class CampaignPresenter
+class Presenter
 {
     /**
      * @var \Artkonekt\Kampaign\Campaign
