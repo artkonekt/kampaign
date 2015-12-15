@@ -10,19 +10,33 @@
  * @version     2015-12-08
  */
 
-namespace Artkonekt\Kampaign;
+namespace Artkonekt\Kampaign\Impression;
+
+use Artkonekt\Kampaign\Campaign\TrackableCampaign;
+use Artkonekt\Kampaign\Common\DataResolver;
 
 /**
  * Class CookieImpressionsRepository
  */
 class CookieImpressionsRepository implements ImpressionsRepositoryInterface
 {
-    const COOKIE_NAME = 'nci';
     const TOTAL_IMPRESSIONS_KEY = 't';
     const IS_SHOWING_ALLOWED_KEY = 'a';
     const CAMPAIGN_ID_KEY = 'c';
 
     const COOKIE_LIFETIME_DAYS = 365;
+
+    private $dataResolver;
+
+    /**
+     * CookieImpressionsRepository constructor.
+     *
+     * @param DataResolver $dataResolver
+     */
+    public function __construct(DataResolver $dataResolver)
+    {
+        $this->dataResolver = $dataResolver;
+    }
 
     /**
      * @inheritdoc
@@ -54,9 +68,9 @@ class CookieImpressionsRepository implements ImpressionsRepositoryInterface
 
         $allData[$impressions->getCampaignTrackingId()] = $array;
 
-        $_COOKIE[self::COOKIE_NAME] = $this->encode($allData);
+        $encodedCookieData = $this->encode($allData);
 
-        setcookie(self::COOKIE_NAME, $_COOKIE[self::COOKIE_NAME], time() + $this->getCookieLifetime(), '/');
+        $this->dataResolver->setCookie(DataResolver::COOKIE_NAME, $encodedCookieData, time() + $this->getCookieLifetime(), '/');
     }
 
     /**
@@ -121,11 +135,12 @@ class CookieImpressionsRepository implements ImpressionsRepositoryInterface
      */
     private function getAllData()
     {
-        if (!isset($_COOKIE[self::COOKIE_NAME])) {
+        $impressionsData = $this->dataResolver->getImpressionsDataFromCookie();
+        if (!$impressionsData) {
             return [];
         }
 
-        return $this->decode($_COOKIE[self::COOKIE_NAME], true);
+        return $this->decode($impressionsData, true);
     }
 
     /**

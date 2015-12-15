@@ -10,9 +10,14 @@
  * @version     2015-12-09
  */
 
-namespace Artkonekt\Kampaign;
+namespace Artkonekt\Kampaign\Campaign;
 
 
+/**
+ * Interface TrackableCampaign
+ *
+ * @package Artkonekt\Kampaign\Campaign
+ */
 interface TrackableCampaign
 {
     /**

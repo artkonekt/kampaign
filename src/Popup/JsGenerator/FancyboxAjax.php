@@ -10,11 +10,31 @@
  * @version     2015-12-09
  */
 
-namespace Artkonekt\Kampaign\JsGenerator;
+namespace Artkonekt\Kampaign\Popup\JsGenerator;
 
 
+use Artkonekt\Kampaign\Campaign\TrackableCampaign;
+use Artkonekt\Kampaign\Common\DataResolver;
+
+/**
+ * Class FancyboxAjax
+ *
+ * @package Artkonekt\Kampaign\JsGenerator
+ */
 class FancyboxAjax implements JsGeneratorInterface
 {
+    /** @var string */
+    private $url;
+
+    /**
+     * FancyboxAjax constructor.
+     *
+     * @param $url
+     */
+    public function __construct($url)
+    {
+        $this->url = $url;
+    }
 
     /**
      * Returns the Javascript code which deals with the showing of the popup.
@@ -27,11 +47,11 @@ class FancyboxAjax implements JsGeneratorInterface
      *
      * @return string
      */
-    public function getScript($campaignTrackingId, $url, $timeout)
+    public function getScript(TrackableCampaign $campaign, $timeout)
     {
         $js = sprintf('
         (function () {
-            var cid = "%s";
+            var %s = "%s";
             var url = "%s";
             var tout = %s;
             $(document).ready(function () {
@@ -40,15 +60,15 @@ class FancyboxAjax implements JsGeneratorInterface
                         $.fancybox.open({
                             type: "ajax",
                             ajax: {
-                                data: "cid=" + cid
+                                data: "%1$s=" + %1$s
                             },
                             href: url,
                         });
                     }
                 }, tout);
             })
-        }());', $campaignTrackingId, $url, $timeout * 1000);
+        }());', DataResolver::CAMPAIGN_ID_KEY, $campaign->getTrackingId(), $this->url, $timeout * 1000);
 
-        return $js;
+        return '<script>' . $js . '</script>';
     }
 }

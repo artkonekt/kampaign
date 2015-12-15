@@ -10,11 +10,11 @@
  * @version     2015-12-09
  */
 
-namespace Artkonekt\Kampaign\Transformer;
+namespace Artkonekt\Kampaign\Popup\Transformer;
 
 
-use Artkonekt\Kampaign\Impressions;
-use Artkonekt\Kampaign\TrackableCampaign;
+use Artkonekt\Kampaign\Campaign\TrackableCampaign;
+use Artkonekt\Kampaign\Impression\Impressions;
 
 interface TransformerInterface
 {

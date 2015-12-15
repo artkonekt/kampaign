@@ -12,7 +12,7 @@
 
 namespace Artkonekt\Kampaign\Tests\Doubles;
 
-use Artkonekt\Kampaign\TrackableCampaign;
+use Artkonekt\Kampaign\Campaign\TrackableCampaign;
 use DateTime;
 
 /**

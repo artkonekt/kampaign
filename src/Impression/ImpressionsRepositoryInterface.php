@@ -10,7 +10,8 @@
  * @version     2015-12-08
  */
 
-namespace Artkonekt\Kampaign;
+namespace Artkonekt\Kampaign\Impression;
+use Artkonekt\Kampaign\Campaign\TrackableCampaign;
 
 
 /**

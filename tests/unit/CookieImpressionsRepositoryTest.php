@@ -14,10 +14,11 @@ namespace Artkonekt\Kampaign\Tests;
 
 
 use Artkonekt\Kampaign\Campaign;
-use Artkonekt\Kampaign\CookieImpressionsRepository;
-use Artkonekt\Kampaign\Impressions;
+use Artkonekt\Kampaign\Campaign\TrackableCampaign;
+use Artkonekt\Kampaign\Common\DataResolver;
+use Artkonekt\Kampaign\Impression\CookieImpressionsRepository;
+use Artkonekt\Kampaign\Impression\Impressions;
 use Artkonekt\Kampaign\Tests\Helper\Factory;
-use Artkonekt\Kampaign\TrackableCampaign;
 use PHPUnit_Framework_Error_Warning;
 use PHPUnit_Framework_TestCase;
 
@@ -35,7 +36,7 @@ class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
         $_COOKIE = [];
-        $this->repo = new CookieImpressionsRepository();
+        $this->repo = new CookieImpressionsRepository(new DataResolver([], [], []));
     }
 
     /**
@@ -44,7 +45,7 @@ class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
      * The call to save() is wrapped in a try..catch block, because we also set a cookie in the save method, causing
      * phpunit to emit an exception.
      *
-     * @param \Artkonekt\Kampaign\Impressions $impressions
+     * @param Impressions $impressions
      *
      * @throws \PHPUnit_Framework_Error_Warning If it is not caused by the header emitting setcookie() method.
      */

@@ -13,30 +13,34 @@
 namespace Artkonekt\Kampaign\Tests;
 
 
-use Artkonekt\Kampaign\JsGenerator\FancyboxAjax;
+use Artkonekt\Kampaign\Common\DataResolver;
+use Artkonekt\Kampaign\Popup\JsGenerator\FancyboxAjax;
+use Artkonekt\Kampaign\Tests\Helper\Factory;
 use PHPUnit_Framework_TestCase;
 
 class FancyBoxAjaxTest extends PHPUnit_Framework_TestCase
 {
     public function testScriptIsIIFE()
     {
-        $generator = new FancyboxAjax();
-        $js = $generator->getScript("trackingId", "URL", 1);
+        $c = Factory::cc();
+        $generator = new FancyboxAjax('http://test.lcl/testpopup.php');
+        $js = $generator->getScript($c, "URL", 1);
 
         $trimmedJs = trim($js);
 
-        $this->assertStringStartsWith('(function () {', $trimmedJs);
-        $this->assertStringEndsWith('());', $trimmedJs);
+        $this->assertNotEquals(false, strpos($trimmedJs, '(function () {'));
+        $this->assertNotEquals(false, strpos($trimmedJs, '());'));
     }
 
     public function testJsVariablesAreOk()
     {
-        $generator = new FancyboxAjax();
+        $c = Factory::cci(10, 100, 27);
+        $generator = new FancyboxAjax('http://test.lcl/testpopup.php');
 
-        $js = $generator->getScript("trackingId", "URL", 54);
+        $js = $generator->getScript($c, 54);
 
-        $this->assertContains('var cid = "trackingId"', $js);
-        $this->assertContains('var url = "URL"', $js);
+        $this->assertContains('var ' . DataResolver::CAMPAIGN_ID_KEY . ' = "27"', $js);
+        $this->assertContains('var url = "http://test.lcl/testpopup.php"', $js);
         $this->assertContains('var tout = 54000', $js);
     }
 }
