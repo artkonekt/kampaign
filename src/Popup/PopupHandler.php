@@ -54,15 +54,23 @@ class PopupHandler
     public function getPopupInitializerJsSnippet()
     {
         $campaign = $this->campaignLoader->getCurrentTrackable();
+
         //TODO: get the timeout from some setting
         return $this->popupInitiator->getJsSnippet($campaign, 1);
     }
 
     /**
-     * @return bool|string
+     * @return string
+     * @throws PopupException
      */
-    public function renderPopup()
+    public function renderAjaxPopup()
     {
+        //TODO: check if request is an ajax call?
+
+        if (!$this->popupInitiator->hasInitiatedAjaxPopup()) {
+            throw new PopupException('Rendering of the popup via Ajax is not allowed. The PopupInitiator generated a script without an Ajax call.');
+        }
+
         $campaign = $this->campaignLoader->getTracked();
         return $this->popupPresenter->render($campaign);
     }

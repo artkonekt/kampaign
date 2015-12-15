@@ -51,25 +51,6 @@ class PopupRenderer
     /**
      * @param TrackableCampaign $campaign
      *
-     * @return string
-     */
-    private function renderFormTemplate(TrackableCampaign $campaign)
-    {
-        $impressions = $this->impressionsOperator->loadOrCreateFor($campaign);
-
-        $emailKey = DataResolver::SUBSCRIBER_EMAIL_KEY;
-        $campaignIdKey = DataResolver::CAMPAIGN_ID_KEY;
-
-        ob_start();
-        include __DIR__ . '/templates/form.php';
-        $content = ob_get_clean();
-
-        return $content;
-    }
-
-    /**
-     * @param TrackableCampaign $campaign
-     *
      * @return bool|string
      */
     public function render(TrackableCampaign $campaign)
@@ -89,6 +70,25 @@ class PopupRenderer
         }
 
         $this->impressionsOperator->increase($impressions);
+
+        return $content;
+    }
+
+    /**
+     * @param TrackableCampaign $campaign
+     *
+     * @return string
+     */
+    private function renderFormTemplate(TrackableCampaign $campaign)
+    {
+        $impressions = $this->impressionsOperator->loadOrCreateFor($campaign);
+
+        $emailKey = DataResolver::SUBSCRIBER_EMAIL_KEY;
+        $campaignIdKey = DataResolver::CAMPAIGN_ID_KEY;
+
+        ob_start();
+        include __DIR__ . '/templates/form.php';
+        $content = ob_get_clean();
 
         return $content;
     }

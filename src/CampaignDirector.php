@@ -49,9 +49,9 @@ class CampaignDirector
     /**
      * @return bool|string
      */
-    public function renderPopup()
+    public function renderAjaxPopup()
     {
-        return $this->popupHandler->renderPopup();
+        return $this->popupHandler->renderAjaxPopup();
     }
 
     /**

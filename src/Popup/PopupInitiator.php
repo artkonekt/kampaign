@@ -5,6 +5,7 @@ namespace Artkonekt\Kampaign\Popup;
 use Artkonekt\Kampaign\Campaign\TrackableCampaign;
 use Artkonekt\Kampaign\Impression\ImpressionLoaderTrait;
 use Artkonekt\Kampaign\Impression\ImpressionsOperator;
+use Artkonekt\Kampaign\Popup\JsGenerator\AjaxAwareGenerator;
 use Artkonekt\Kampaign\Popup\JsGenerator\JsGeneratorInterface;
 
 /**
@@ -65,5 +66,13 @@ class PopupInitiator
         } else {
             return '';
         }
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasInitiatedAjaxPopup()
+    {
+        return ($this->jsGenerator instanceof AjaxAwareGenerator);
     }
 }

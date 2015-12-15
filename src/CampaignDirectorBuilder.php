@@ -19,7 +19,7 @@ use Artkonekt\Kampaign\Common\DataResolver;
 use Artkonekt\Kampaign\Impression\CookieImpressionsRepository;
 use Artkonekt\Kampaign\Impression\ImpressionsOperator;
 use Artkonekt\Kampaign\Impression\ImpressionsRepositoryInterface;
-use Artkonekt\Kampaign\Popup\JsGenerator\Fancybox;
+use Artkonekt\Kampaign\Popup\JsGenerator\FancyboxGenerator;
 use Artkonekt\Kampaign\Popup\JsGenerator\JsGeneratorInterface;
 use Artkonekt\Kampaign\Popup\JsGenerator\RendererAwareGenerator;
 use Artkonekt\Kampaign\Popup\PopupHandler;
@@ -172,7 +172,7 @@ class CampaignDirectorBuilder
     private function getJsGenerator()
     {
         if (!$this->jsGenerator) {
-            $this->jsGenerator = new Fancybox();
+            $this->jsGenerator = new FancyboxGenerator();
         }
 
         if ($this->jsGenerator instanceof RendererAwareGenerator) {

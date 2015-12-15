@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains class Fancybox
+ * Contains class FancyboxGenerator
  *
  * @package     Artkonekt\Kampaign\JsGenerator
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
@@ -18,18 +18,34 @@ use Artkonekt\Kampaign\Popup\PopupRenderer;
 use Artkonekt\Kampaign\Popup\JsGenerator\Util\ScriptExtractor;
 
 /**
- * Class Fancybox
+ * Class FancyboxGenerator
  *
  * @package Artkonekt\Kampaign\JsGenerator
  */
-class Fancybox implements JsGeneratorInterface, RendererAwareGenerator
+class FancyboxGenerator implements JsGeneratorInterface, RendererAwareGenerator
 {
+    const WRAPPER_DIV_ID = 'kampaign-popup-wrapper';
+
     /**
      * @var PopupRenderer
      */
     private $popupRenderer;
 
     /**
+     * @param PopupRenderer $popupRenderer
+     *
+     * @return mixed|void
+     */
+    public function setPopupRenderer(PopupRenderer $popupRenderer)
+    {
+        $this->popupRenderer = $popupRenderer;
+    }
+
+    /**
+     * Renders the script which contains the renderable popup's HTML code.
+     *
+     * Note: the HTML code can contain <script>...</script> tags, these are extracted and rendered separately.
+     *
      * @param TrackableCampaign $campaign
      * @param int          $timeout
      *
@@ -37,22 +53,25 @@ class Fancybox implements JsGeneratorInterface, RendererAwareGenerator
      */
     public function getScript(TrackableCampaign $campaign, $timeout)
     {
-        $popupContents = $this->popupRenderer->render($campaign);
-        $scriptExtractor = new ScriptExtractor($popupContents);
-        $contentsWithoutScripts = $scriptExtractor->getHtmlWithoutScripts();
-        $scripts = $scriptExtractor->getExtractedScripts();
+        $rawPopupContents = $this->popupRenderer->render($campaign);
 
-        $jsEscapedContent = addslashes(str_replace("\n", '', sprintf('<div id="kampaign-popup-wrapper" style="display: none;">%s</div>', $contentsWithoutScripts)));
+        $scriptExtractor = new ScriptExtractor($rawPopupContents);
+
+        $scripts = $scriptExtractor->getExtractedScripts();
+        $contentWithoutScripts = $scriptExtractor->getHtmlWithoutScripts();
+
+        $wrappedContent = sprintf('<div id="%s" style="display: none;">%s</div>', self::WRAPPER_DIV_ID, $contentWithoutScripts);
+        $jsEscapedWrappedContent = $this->escapeToValidJs($wrappedContent);
 
         $js = sprintf('
         (function () {
             var tout = %s;
             $(document).ready(function () {
-                $("body").append("' . $jsEscapedContent . '");
+                $("body").append("' . $jsEscapedWrappedContent . '");
                 setTimeout(function () {
                     if (!$.fancybox.isOpen) {
                         $.fancybox.open({
-                            href: "#kampaign-popup-wrapper",
+                            href: "#' . self::WRAPPER_DIV_ID . '",
                         });
                     }
                 }, tout);
@@ -65,12 +84,12 @@ class Fancybox implements JsGeneratorInterface, RendererAwareGenerator
     }
 
     /**
-     * @param PopupRenderer $popupRenderer
+     * @param $html
      *
-     * @return mixed|void
+     * @return string
      */
-    public function setPopupRenderer(PopupRenderer $popupRenderer)
+    private function escapeToValidJs($html)
     {
-        $this->popupRenderer = $popupRenderer;
+        return addslashes(str_replace("\n", '', $html));
     }
 }

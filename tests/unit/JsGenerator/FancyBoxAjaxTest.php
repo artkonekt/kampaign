@@ -14,7 +14,7 @@ namespace Artkonekt\Kampaign\Tests;
 
 
 use Artkonekt\Kampaign\Common\DataResolver;
-use Artkonekt\Kampaign\Popup\JsGenerator\FancyboxAjax;
+use Artkonekt\Kampaign\Popup\JsGenerator\FancyboxAjaxGenerator;
 use Artkonekt\Kampaign\Tests\Helper\Factory;
 use PHPUnit_Framework_TestCase;
 
@@ -23,7 +23,7 @@ class FancyBoxAjaxTest extends PHPUnit_Framework_TestCase
     public function testScriptIsIIFE()
     {
         $c = Factory::cc();
-        $generator = new FancyboxAjax('http://test.lcl/testpopup.php');
+        $generator = new FancyboxAjaxGenerator('http://test.lcl/testpopup.php');
         $js = $generator->getScript($c, "URL", 1);
 
         $trimmedJs = trim($js);
@@ -35,7 +35,7 @@ class FancyBoxAjaxTest extends PHPUnit_Framework_TestCase
     public function testJsVariablesAreOk()
     {
         $c = Factory::cci(10, 100, 27);
-        $generator = new FancyboxAjax('http://test.lcl/testpopup.php');
+        $generator = new FancyboxAjaxGenerator('http://test.lcl/testpopup.php');
 
         $js = $generator->getScript($c, 54);
 

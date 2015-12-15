@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains class FancyboxAjax
+ * Contains class FancyboxAjaxGenerator
  *
  * @package     ScriptGenerator
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
@@ -17,19 +17,19 @@ use Artkonekt\Kampaign\Campaign\TrackableCampaign;
 use Artkonekt\Kampaign\Common\DataResolver;
 
 /**
- * Class FancyboxAjax
+ * Class FancyboxAjaxGenerator
  *
  * @package Artkonekt\Kampaign\JsGenerator
  */
-class FancyboxAjax implements JsGeneratorInterface
+class FancyboxAjaxGenerator implements JsGeneratorInterface, AjaxAwareGenerator
 {
     /** @var string */
     private $url;
 
     /**
-     * FancyboxAjax constructor.
+     * FancyboxAjaxGenerator constructor.
      *
-     * @param $url
+     * @param $url The url from where the Ajax script will get the popup's contents.
      */
     public function __construct($url)
     {
@@ -41,9 +41,8 @@ class FancyboxAjax implements JsGeneratorInterface
      *
      * We show a fancybox, which gets its content from the specified URL via AJAX, after a specified timeout.
      *
-     * @param $campaignTrackingId The tracking ID of the campaign
-     * @param $url The url which returns the content of our popup
-     * @param $timeout The timeout after which the popup should appear in seconds.
+     * @param TrackableCampaign                              $campaign
+     * @param                                                $timeout The timeout after which the popup should appear in seconds.
      *
      * @return string
      */
@@ -69,6 +68,6 @@ class FancyboxAjax implements JsGeneratorInterface
             })
         }());', DataResolver::CAMPAIGN_ID_KEY, $campaign->getTrackingId(), $this->url, $timeout * 1000);
 
-        return '<script>' . $js . '</script>';
+        return sprintf("<script>%s</script>", $js);
     }
 }
