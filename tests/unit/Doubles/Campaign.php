@@ -159,4 +159,16 @@ class Campaign implements TrackableCampaignInterface
     {
         return $this->getId();
     }
-}
+
+    /**
+     * Returns the contents to be rendered in the popup
+     *
+     * @return string
+     */
+    public function getContent()
+    {
+        return '<div>
+                <img src="/images/just_do_it.jpg">
+            </div>
+        ';
+    }}

@@ -1,6 +1,4 @@
-<div>
-    <img src="/images/just_do_it.jpg">
-</div>
+<?= $campaign->getContent(); ?>
 
 <!-- TODO name ids consistently -->
 <!-- TODO Translatable strings -->

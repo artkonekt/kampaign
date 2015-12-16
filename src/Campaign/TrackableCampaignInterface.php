@@ -41,4 +41,10 @@ interface TrackableCampaignInterface
      * @return int
      */
     public function getMaxImpressions();
+
+    /**
+     * Returns the contents to be rendered in the popup
+     * @return string
+     */
+    public function getContent();
 }
