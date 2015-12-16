@@ -12,7 +12,7 @@ class FakeCampaignRepository implements CampaignRepositoryInterface
 {
     public function findById($campaignId)
     {
-        return new Campaign($campaignId, 'Test Campaign #' . $campaignId, 'Description of the campaign', true, new DateTime(), new DateTime(), 20, 5);
+        return new Campaign($campaignId, 'Test Campaign #' . $campaignId, 'Description of the campaign', true, new DateTime(), new DateTime(), 200, 50);
     }
 
     public function findCurrent()

@@ -219,6 +219,8 @@ class CampaignDirectorBuilder
     {
         return new SubscriptionHandler(
             $this->getCampaignLoader(),
+            //3ea6bb3147eca706ce40d49d51e87bbd-us2
+            //3068f23c32
             new MailchimpNewsletterSubscriber('apiK', 'someListId', false, []),
             $this->getImpressionsOperator(),
             $this->getDataResolver()

@@ -46,14 +46,14 @@ class SubscriptionHandler
     /**
      * SubscriptionHandler constructor.
      *
-     * @param CampaignLoader       $campaignLoader
-     * @param NewsletterSubscriber $newsletterSubscriber
-     * @param ImpressionsOperator  $impressionsOperator
-     * @param DataResolver         $dataResolver
+     * @param CampaignLoader                $campaignLoader
+     * @param NewsletterSubscriberInterface $newsletterSubscriber
+     * @param ImpressionsOperator           $impressionsOperator
+     * @param DataResolver                  $dataResolver
      */
     public function __construct(
         CampaignLoader $campaignLoader,
-        NewsletterSubscriber $newsletterSubscriber,
+        NewsletterSubscriberInterface $newsletterSubscriber,
         ImpressionsOperator $impressionsOperator,
         DataResolver $dataResolver
     )
@@ -76,7 +76,7 @@ class SubscriptionHandler
             echo sprintf('Email "%s" subscribed successfully through campaign %s', $email, $campaign->getTrackingId());
             $this->impressionsOperator->disableFor($campaign);
         } else {
-            header("HTTP/1.0 400 Some error occured");
+            header("HTTP/1.0 400 " . $this->newsletterSubscriber->getErrorMessage());
         }
     }
 }

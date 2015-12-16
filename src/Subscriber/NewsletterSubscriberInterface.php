@@ -3,7 +3,7 @@
 namespace Artkonekt\Kampaign\Subscriber;
 
 /**
- * Contains interface NewsletterSubscriber
+ * Contains interface NewsletterSubscriberInterface
  *
  * @package     ${NAMESPACE}
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
@@ -13,11 +13,11 @@ namespace Artkonekt\Kampaign\Subscriber;
  * @version     2015-12-14
  */
 /**
- * Interface NewsletterSubscriber
+ * Interface NewsletterSubscriberInterface
  *
  * @package Artkonekt\Kampaign\Prototype
  */
-interface NewsletterSubscriber
+interface NewsletterSubscriberInterface
 {
     /**
      * @param $email
@@ -25,4 +25,6 @@ interface NewsletterSubscriber
      * @return mixed
      */
     public function subscribe($email);
+
+    public function getErrorMessage();
 }

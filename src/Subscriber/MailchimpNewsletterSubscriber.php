@@ -2,6 +2,8 @@
 
 namespace Artkonekt\Kampaign\Subscriber;
 
+use Mailchimp;
+
 /**
  * Contains class MailchimpNewsletterSubscriber
  *
@@ -12,13 +14,15 @@ namespace Artkonekt\Kampaign\Subscriber;
  * @since       2015-12-14
  * @version     2015-12-14
  */
-class MailchimpNewsletterSubscriber implements NewsletterSubscriber
+class MailchimpNewsletterSubscriber implements NewsletterSubscriberInterface
 {
     private $apiKey;
     private $listId;
     private $doubleOptin;
     private $mergeVars;
     private $emailType;
+
+    private $errorMessage;
 
     /**
      * MailchimpNewsletterSubscriber constructor.
@@ -40,9 +44,24 @@ class MailchimpNewsletterSubscriber implements NewsletterSubscriber
 
     /**
      * @param string $email
+     *
+     * @return bool
      */
     public function subscribe($email)
     {
+        try {
+            $api = new Mailchimp($this->apiKey, []);
+            $api->lists->subscribe($this->listId, ['email' => $email], $this->mergeVars, $this->emailType, $this->doubleOptin);
+        } catch (\Exception $e) {
+            $this->errorMessage = $e->getMessage();
+            return false;
+        }
+
         return true;
+    }
+
+    public function getErrorMessage()
+    {
+        return $this->errorMessage;
     }
 }
