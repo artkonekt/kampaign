@@ -66,9 +66,9 @@ class FancyboxGenerator implements JsGeneratorInterface, RendererAwareInterface
         $js = sprintf('
         (function () {
             var tout = %s;
-            $(document).ready(function () {
+            $(document).ready(function() {
                 $("body").append("' . $jsEscapedWrappedContent . '");
-                setTimeout(function () {
+                setTimeout(function() {
                     if (!$.fancybox.isOpen) {
                         $.fancybox.open({
                             href: "#' . self::WRAPPER_DIV_ID . '",

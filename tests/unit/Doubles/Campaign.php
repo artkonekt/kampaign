@@ -167,8 +167,11 @@ class Campaign implements TrackableCampaignInterface
      */
     public function getContent()
     {
+        //TODO: maybe the newsletter stuff doesn't belong here
+
         return '<div>
                 <img src="/images/just_do_it.jpg">
             </div>
+            <p class="alert alert-info">Subscribe to our newsletter via our campaign ' . $this->getTrackingId() . '</p>
         ';
     }}

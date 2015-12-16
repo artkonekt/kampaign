@@ -54,7 +54,7 @@ class FancyboxAjaxGenerator implements JsGeneratorInterface, AjaxAwareGenerator
             var url = "%s";
             var tout = %s;
             $(document).ready(function () {
-                setTimeout(function () {
+                setTimeout(function() {
                     if (!$.fancybox.isOpen) {
                         $.fancybox.open({
                             type: "ajax",

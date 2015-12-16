@@ -14,9 +14,9 @@ namespace Artkonekt\Kampaign\Popup;
 
 
 use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
-use Artkonekt\Kampaign\Common\DataResolver;
 use Artkonekt\Kampaign\Impression\ImpressionLoaderTrait;
 use Artkonekt\Kampaign\Impression\ImpressionsOperator;
+use Artkonekt\Kampaign\Popup\Transformer\NewsletterFormTransformer;
 use Artkonekt\Kampaign\Popup\Transformer\TransformerInterface;
 
 /**
@@ -37,15 +37,26 @@ class PopupRenderer
     private $transformer;
 
     /**
+     * @var NewsletterFormTransformer
+     */
+    private $newsletterFormTransformer;
+
+    /**
      * PopupRenderer constructor.
      *
-     * @param ImpressionsOperator  $impressionsOperator
-     * @param TransformerInterface $transformer
+     * @param ImpressionsOperator       $impressionsOperator
+     * @param NewsletterFormTransformer $newsletterFormTransformer
+     * @param TransformerInterface      $transformer
      */
-    public function __construct(ImpressionsOperator $impressionsOperator, TransformerInterface $transformer = null)
+    public function __construct(
+        ImpressionsOperator $impressionsOperator,
+        NewsletterFormTransformer $newsletterFormTransformer,
+        TransformerInterface $transformer = null)
     {
         $this->transformer = $transformer;
+        $this->newsletterFormTransformer = $newsletterFormTransformer;
         $this->impressionsOperator = $impressionsOperator;
+
     }
 
     /**
@@ -60,7 +71,7 @@ class PopupRenderer
         $template = '';
 
         if ($impressions->canBeIncreasedToday()) {
-            $template = $this->renderFormTemplate($campaign);
+            $template = $this->newsletterFormTransformer->transform($campaign, $impressions, $campaign->getContent());
         }
 
         if ($this->transformer) {
@@ -70,25 +81,6 @@ class PopupRenderer
         }
 
         $this->impressionsOperator->increase($impressions);
-
-        return $content;
-    }
-
-    /**
-     * @param TrackableCampaignInterface $campaign
-     *
-     * @return string
-     */
-    private function renderFormTemplate(TrackableCampaignInterface $campaign)
-    {
-        $impressions = $this->impressionsOperator->loadOrCreateFor($campaign);
-
-        $emailKey = DataResolver::SUBSCRIBER_EMAIL_KEY;
-        $campaignIdKey = DataResolver::CAMPAIGN_ID_KEY;
-
-        ob_start();
-        include __DIR__ . '/templates/form.php';
-        $content = ob_get_clean();
 
         return $content;
     }

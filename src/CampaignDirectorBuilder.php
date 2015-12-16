@@ -26,6 +26,7 @@ use Artkonekt\Kampaign\Popup\PopupHandler;
 use Artkonekt\Kampaign\Popup\PopupInitiator;
 use Artkonekt\Kampaign\Popup\PopupRenderer;
 use Artkonekt\Kampaign\Popup\Transformer\DebugTransformer;
+use Artkonekt\Kampaign\Popup\Transformer\NewsletterFormTransformer;
 use Artkonekt\Kampaign\Subscriber\MailchimpNewsletterSubscriber;
 use Artkonekt\Kampaign\Subscriber\SubscriptionHandler;
 
@@ -62,6 +63,13 @@ class CampaignDirectorBuilder
     private $jsGenerator;
 
     /**
+     * @var string
+     */
+    private $subscribeCallbackUrl = 'subscribe.php';
+
+    private $formTemplate;
+
+    /**
      * CampaignDirectorBuilder constructor.
      *
      * @param CampaignRepositoryInterface $campaignRepository
@@ -92,6 +100,18 @@ class CampaignDirectorBuilder
     public function setJsGenerator(JsGeneratorInterface $jsGenerator)
     {
         $this->jsGenerator = $jsGenerator;
+        return $this;
+    }
+
+    /**
+     * @param $subscribeCallbackUrl
+     *
+     * @return $this
+     */
+    public function setupNewsletterForm($subscribeCallbackUrl, $formTemplate = null)
+    {
+        $this->formTemplate = $formTemplate;
+        $this->subscribeCallbackUrl = $subscribeCallbackUrl;
         return $this;
     }
 
@@ -156,7 +176,11 @@ class CampaignDirectorBuilder
             if ($this->isDebugModeEnabled) {
                 $transformer = new DebugTransformer();
             }
-            $this->popupRenderer = new PopupRenderer($this->getImpressionsOperator(), $transformer);
+            $this->popupRenderer = new PopupRenderer(
+                $this->getImpressionsOperator(),
+                $this->getNewsletterFormTransformer(),
+                $transformer
+            );
         }
 
         return $this->popupRenderer;
@@ -204,6 +228,11 @@ class CampaignDirectorBuilder
     private function getCampaignLoader()
     {
         return new CampaignLoader($this->campaignRepository, $this->getDataResolver());
+    }
+
+    private function getNewsletterFormTransformer()
+    {
+        return new NewsletterFormTransformer($this->subscribeCallbackUrl, $this->formTemplate);
     }
 
     /**
