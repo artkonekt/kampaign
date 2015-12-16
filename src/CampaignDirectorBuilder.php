@@ -69,14 +69,17 @@ class CampaignDirectorBuilder
 
     private $formTemplate;
 
+    private $mailchimpParams = [];
+
     /**
      * CampaignDirectorBuilder constructor.
      *
      * @param CampaignRepositoryInterface $campaignRepository
      */
-    public function __construct(CampaignRepositoryInterface $campaignRepository)
+    public function __construct(CampaignRepositoryInterface $campaignRepository, $mailchimpParams)
     {
         $this->campaignRepository = $campaignRepository;
+        $this->mailchimpParams = $mailchimpParams;
     }
 
     /**
@@ -219,9 +222,12 @@ class CampaignDirectorBuilder
     {
         return new SubscriptionHandler(
             $this->getCampaignLoader(),
-            //3ea6bb3147eca706ce40d49d51e87bbd-us2
-            //3068f23c32
-            new MailchimpNewsletterSubscriber('apiK', 'someListId', false, []),
+            new MailchimpNewsletterSubscriber(
+                $this->mailchimpParams['apiKey'],
+                $this->mailchimpParams['listId'],
+                $this->mailchimpParams['doubleOptin'],
+                $this->mailchimpParams['mergeVars']
+            ),
             $this->getImpressionsOperator(),
             $this->getDataResolver()
         );
