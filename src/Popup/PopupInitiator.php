@@ -2,7 +2,7 @@
 
 namespace Artkonekt\Kampaign\Popup;
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaign;
+use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
 use Artkonekt\Kampaign\Impression\ImpressionLoaderTrait;
 use Artkonekt\Kampaign\Impression\ImpressionsOperator;
 use Artkonekt\Kampaign\Popup\JsGenerator\AjaxAwareGenerator;
@@ -52,12 +52,12 @@ class PopupInitiator
     /**
      * Returns the JQuery snippet which should be rendered in every the page the campaign popup should appear.
      *
-     * @param TrackableCampaign $campaign The campaign to be presented
-     * @param int               $timeout  How many seconds after page load should the popup appear
+     * @param TrackableCampaignInterface $campaign The campaign to be presented
+     * @param int                        $timeout  How many seconds after page load should the popup appear
      *
      * @return string
      */
-    public function getJsSnippet(TrackableCampaign $campaign, $timeout)
+    public function getJsSnippet(TrackableCampaignInterface $campaign, $timeout)
     {
         $impressions = $this->impressionsOperator->loadOrCreateFor($campaign);
 

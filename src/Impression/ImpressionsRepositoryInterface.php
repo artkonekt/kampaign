@@ -11,7 +11,7 @@
  */
 
 namespace Artkonekt\Kampaign\Impression;
-use Artkonekt\Kampaign\Campaign\TrackableCampaign;
+use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
 
 
 /**
@@ -24,11 +24,11 @@ interface ImpressionsRepositoryInterface
     /**
      * Returns the impressions for a campaign.
      *
-     * @param TrackableCampaign $campaign
+     * @param TrackableCampaignInterface $campaign
      *
      * @return Impressions
      */
-    public function findImpressionsByCampaign(TrackableCampaign $campaign);
+    public function findImpressionsByCampaign(TrackableCampaignInterface $campaign);
 
     /**
      * Saves an Impressions instance.

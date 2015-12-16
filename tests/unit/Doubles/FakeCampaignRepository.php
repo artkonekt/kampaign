@@ -2,13 +2,13 @@
 
 namespace Artkonekt\Kampaign\Tests\Doubles;
 
-use Artkonekt\Kampaign\Campaign\CampaignRepository;
+use Artkonekt\Kampaign\Campaign\CampaignRepositoryInterface;
 use DateTime;
 
 /**
  * Class FakeCampaignRepository
  */
-class FakeCampaignRepository implements CampaignRepository
+class FakeCampaignRepository implements CampaignRepositoryInterface
 {
     public function findById($campaignId)
     {

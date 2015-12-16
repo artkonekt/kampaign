@@ -13,7 +13,7 @@
 namespace Artkonekt\Kampaign\Popup;
 
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaign;
+use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
 use Artkonekt\Kampaign\Common\DataResolver;
 use Artkonekt\Kampaign\Impression\ImpressionLoaderTrait;
 use Artkonekt\Kampaign\Impression\ImpressionsOperator;
@@ -49,11 +49,11 @@ class PopupRenderer
     }
 
     /**
-     * @param TrackableCampaign $campaign
+     * @param TrackableCampaignInterface $campaign
      *
      * @return bool|string
      */
-    public function render(TrackableCampaign $campaign)
+    public function render(TrackableCampaignInterface $campaign)
     {
         $impressions = $this->impressionsOperator->loadOrCreateFor($campaign);
 
@@ -75,11 +75,11 @@ class PopupRenderer
     }
 
     /**
-     * @param TrackableCampaign $campaign
+     * @param TrackableCampaignInterface $campaign
      *
      * @return string
      */
-    private function renderFormTemplate(TrackableCampaign $campaign)
+    private function renderFormTemplate(TrackableCampaignInterface $campaign)
     {
         $impressions = $this->impressionsOperator->loadOrCreateFor($campaign);
 

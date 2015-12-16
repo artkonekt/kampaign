@@ -13,17 +13,17 @@
 namespace Artkonekt\Kampaign\Popup\Transformer;
 
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaign;
+use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
 use Artkonekt\Kampaign\Impression\Impressions;
 
 interface TransformerInterface
 {
     /**
-     * @param TrackableCampaign                                                                $campaign
+     * @param TrackableCampaignInterface                                                       $campaign
      * @param Impressions                                                                      $impressions
      * @param                                                                                  $template
      *
      * @return mixed
      */
-    public function transform(TrackableCampaign $campaign, Impressions $impressions, $template);
+    public function transform(TrackableCampaignInterface $campaign, Impressions $impressions, $template);
 }

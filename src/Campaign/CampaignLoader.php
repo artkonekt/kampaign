@@ -21,7 +21,7 @@ use Artkonekt\Kampaign\Common\DataResolver;
  */
 class CampaignLoader
 {
-    /** @var CampaignRepository */
+    /** @var CampaignRepositoryInterface */
     private $campaignRepository;
 
     /** @var DataResolver */
@@ -33,7 +33,7 @@ class CampaignLoader
      * @param $campaignRepository
      * @param $dataResolver
      */
-    public function __construct(CampaignRepository $campaignRepository, DataResolver $dataResolver)
+    public function __construct(CampaignRepositoryInterface $campaignRepository, DataResolver $dataResolver)
     {
         $this->campaignRepository = $campaignRepository;
         $this->dataResolver = $dataResolver;

@@ -12,13 +12,13 @@
 
 namespace Artkonekt\Kampaign\Tests\Doubles;
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaign;
+use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
 use DateTime;
 
 /**
  * Represents a campaign entity.
  */
-class Campaign implements TrackableCampaign
+class Campaign implements TrackableCampaignInterface
 {
     /**
      * @var int

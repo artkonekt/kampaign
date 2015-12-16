@@ -13,7 +13,7 @@
 namespace Artkonekt\Kampaign\Popup\JsGenerator;
 
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaign;
+use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
 use Artkonekt\Kampaign\Popup\PopupRenderer;
 use Artkonekt\Kampaign\Popup\JsGenerator\Util\ScriptExtractor;
 
@@ -22,7 +22,7 @@ use Artkonekt\Kampaign\Popup\JsGenerator\Util\ScriptExtractor;
  *
  * @package Artkonekt\Kampaign\JsGenerator
  */
-class FancyboxGenerator implements JsGeneratorInterface, RendererAwareGenerator
+class FancyboxGenerator implements JsGeneratorInterface, RendererAwareInterface
 {
     const WRAPPER_DIV_ID = 'kampaign-popup-wrapper';
 
@@ -46,12 +46,12 @@ class FancyboxGenerator implements JsGeneratorInterface, RendererAwareGenerator
      *
      * Note: the HTML code can contain <script>...</script> tags, these are extracted and rendered separately.
      *
-     * @param TrackableCampaign $campaign
-     * @param int          $timeout
+     * @param TrackableCampaignInterface $campaign
+     * @param int                        $timeout
      *
      * @return string
      */
-    public function getScript(TrackableCampaign $campaign, $timeout)
+    public function getScript(TrackableCampaignInterface $campaign, $timeout)
     {
         $rawPopupContents = $this->popupRenderer->render($campaign);
 

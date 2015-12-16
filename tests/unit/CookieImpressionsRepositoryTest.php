@@ -14,7 +14,7 @@ namespace Artkonekt\Kampaign\Tests;
 
 
 use Artkonekt\Kampaign\Campaign;
-use Artkonekt\Kampaign\Campaign\TrackableCampaign;
+use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
 use Artkonekt\Kampaign\Common\DataResolver;
 use Artkonekt\Kampaign\Impression\CookieImpressionsRepository;
 use Artkonekt\Kampaign\Impression\Impressions;
@@ -60,7 +60,7 @@ class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    private function findByCampaign(TrackableCampaign $campaign)
+    private function findByCampaign(TrackableCampaignInterface $campaign)
     {
         return $this->repo->findImpressionsByCampaign($campaign);
     }

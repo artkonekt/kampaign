@@ -13,7 +13,7 @@
 namespace Artkonekt\Kampaign\Popup\Transformer;
 
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaign;
+use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
 use Artkonekt\Kampaign\Impression\Impressions;
 
 /**
@@ -25,25 +25,25 @@ class DebugTransformer implements TransformerInterface
 {
 
     /**
-     * @param TrackableCampaign                                                           $campaign
+     * @param TrackableCampaignInterface                                                  $campaign
      * @param Impressions                                                                 $impressions
      * @param                                                                             $template
      *
      * @return mixed
      */
-    public function transform(TrackableCampaign $campaign, Impressions $impressions, $template)
+    public function transform(TrackableCampaignInterface $campaign, Impressions $impressions, $template)
     {
         $visibilityText = $this->getVisibilityText($campaign, $impressions);
         return $visibilityText . '<hr>' . $template;
     }
 
     /**
-     * @param TrackableCampaign $campaign
-     * @param Impressions       $impressions
+     * @param TrackableCampaignInterface $campaign
+     * @param Impressions                $impressions
      *
      * @return string
      */
-    private function getVisibilityText(TrackableCampaign $campaign, Impressions $impressions)
+    private function getVisibilityText(TrackableCampaignInterface $campaign, Impressions $impressions)
     {
         if ($impressions->canBeIncreasedToday()) {
             $text = 'Popup is showed in normal mode. This is impression ' . ($impressions->getForToday()+1) . ' out of ' . $campaign->getMaxImpressionPerDay() . ' for today';

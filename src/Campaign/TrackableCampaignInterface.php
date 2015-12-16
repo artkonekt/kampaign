@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains interface TrackableCampaign
+ * Contains interface TrackableCampaignInterface
  *
  * @package     Artkonekt\Kampaign
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
@@ -14,11 +14,11 @@ namespace Artkonekt\Kampaign\Campaign;
 
 
 /**
- * Interface TrackableCampaign
+ * Interface TrackableCampaignInterface
  *
  * @package Artkonekt\Kampaign\Campaign
  */
-interface TrackableCampaign
+interface TrackableCampaignInterface
 {
     /**
      * Returns the tracking ID of the campaign. It should be unique.

@@ -14,14 +14,14 @@ namespace Artkonekt\Kampaign;
 
 
 use Artkonekt\Kampaign\Campaign\CampaignLoader;
-use Artkonekt\Kampaign\Campaign\CampaignRepository;
+use Artkonekt\Kampaign\Campaign\CampaignRepositoryInterface;
 use Artkonekt\Kampaign\Common\DataResolver;
 use Artkonekt\Kampaign\Impression\CookieImpressionsRepository;
 use Artkonekt\Kampaign\Impression\ImpressionsOperator;
 use Artkonekt\Kampaign\Impression\ImpressionsRepositoryInterface;
 use Artkonekt\Kampaign\Popup\JsGenerator\FancyboxGenerator;
 use Artkonekt\Kampaign\Popup\JsGenerator\JsGeneratorInterface;
-use Artkonekt\Kampaign\Popup\JsGenerator\RendererAwareGenerator;
+use Artkonekt\Kampaign\Popup\JsGenerator\RendererAwareInterface;
 use Artkonekt\Kampaign\Popup\PopupHandler;
 use Artkonekt\Kampaign\Popup\PopupInitiator;
 use Artkonekt\Kampaign\Popup\PopupRenderer;
@@ -37,7 +37,7 @@ use Artkonekt\Kampaign\Subscriber\SubscriptionHandler;
 class CampaignDirectorBuilder
 {
     /**
-     * @var CampaignRepository
+     * @var CampaignRepositoryInterface
      */
     private $campaignRepository;
 
@@ -64,9 +64,9 @@ class CampaignDirectorBuilder
     /**
      * CampaignDirectorBuilder constructor.
      *
-     * @param CampaignRepository $campaignRepository
+     * @param CampaignRepositoryInterface $campaignRepository
      */
-    public function __construct(CampaignRepository $campaignRepository)
+    public function __construct(CampaignRepositoryInterface $campaignRepository)
     {
         $this->campaignRepository = $campaignRepository;
     }
@@ -175,7 +175,7 @@ class CampaignDirectorBuilder
             $this->jsGenerator = new FancyboxGenerator();
         }
 
-        if ($this->jsGenerator instanceof RendererAwareGenerator) {
+        if ($this->jsGenerator instanceof RendererAwareInterface) {
             $this->jsGenerator->setPopupRenderer($this->getPopupRenderer());
         }
 

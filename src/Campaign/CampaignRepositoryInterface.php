@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains interface CampaignRepository
+ * Contains interface CampaignRepositoryInterface
  *
  * @package     Artkonekt\Kampaign\Prototype
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
@@ -14,14 +14,14 @@ namespace Artkonekt\Kampaign\Campaign;
 
 
 /**
- * Interface CampaignRepository
+ * Interface CampaignRepositoryInterface
  *
  * @package Artkonekt\Kampaign\Campaign
  */
-interface CampaignRepository
+interface CampaignRepositoryInterface
 {
     /**
-     * @return TrackableCampaign
+     * @return TrackableCampaignInterface
      */
     public function findCurrent();
 

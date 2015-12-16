@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains interface RendererAwareGenerator
+ * Contains interface RendererAwareInterface
  *
  * @package     Artkonekt\Kampaign\JsGenerator
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
@@ -15,11 +15,11 @@ namespace Artkonekt\Kampaign\Popup\JsGenerator;
 use Artkonekt\Kampaign\Popup\PopupRenderer;
 
 /**
- * Interface RendererAwareGenerator
+ * Interface RendererAwareInterface
  *
  * @package Artkonekt\Kampaign\JsGenerator
  */
-interface RendererAwareGenerator
+interface RendererAwareInterface
 {
     /**
      * @param PopupRenderer $popupRenderer

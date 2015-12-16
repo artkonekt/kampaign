@@ -20,16 +20,18 @@ namespace Artkonekt\Kampaign\Common;
  */
 class DataResolver
 {
-    /** @var array */
-    private $get;
-    /** @var array */
-    private $post;
-    /** @var array */
-    private $cookie;
 
     const COOKIE_NAME = 'nci';
     const CAMPAIGN_ID_KEY = 'kampaigncid';
     const SUBSCRIBER_EMAIL_KEY = 'kampaignemail';
+
+    /** @var array */
+    private $get;
+
+    /** @var array */
+    private $post;
+    /** @var array */
+    private $cookie;
 
     /**
      * DataResolver constructor.
@@ -80,13 +82,13 @@ class DataResolver
     }
 
     /**
-     * @param string     $name
+     * @param string $name
      * @param string $value
-     * @param int $expire
+     * @param int    $expire
      * @param string $path
      * @param string $domain
-     * @param bool $secure
-     * @param bool $httpOnly
+     * @param bool   $secure
+     * @param bool   $httpOnly
      */
     public function setCookie($name, $value = null, $expire = null, $path = null, $domain = null, $secure = null, $httpOnly = null)
     {

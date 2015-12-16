@@ -11,7 +11,7 @@
  */
 
 namespace Artkonekt\Kampaign\Impression;
-use Artkonekt\Kampaign\Campaign\TrackableCampaign;
+use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
 
 /**
  * Entity for impressions of a user for a specific campaign.
@@ -19,7 +19,7 @@ use Artkonekt\Kampaign\Campaign\TrackableCampaign;
 class Impressions
 {
     /**
-     * @var Campaign
+     * @var TrackableCampaignInterface
      */
     private $campaign;
 
@@ -41,12 +41,12 @@ class Impressions
     /**
      * UserImpressions constructor.
      *
-     * @param TrackableCampaign                                                  $campaign
+     * @param TrackableCampaignInterface                                         $campaign
      * @param int                                                                $today
      * @param int                                                                $total
      * @param                                                                    $isShowingAllowed
      */
-    public function __construct(TrackableCampaign $campaign, $today, $total, $isShowingAllowed)
+    public function __construct(TrackableCampaignInterface $campaign, $today, $total, $isShowingAllowed)
     {
         $this->isShowingAllowed = $isShowingAllowed;
         $this->campaign = $campaign;

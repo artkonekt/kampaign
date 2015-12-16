@@ -12,7 +12,7 @@
 
 namespace Artkonekt\Kampaign\Tests\Helper;
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaign;
+use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
 use Artkonekt\Kampaign\Impression\Impressions;
 use Artkonekt\Kampaign\Tests\Doubles\Campaign;
 use DateTime;
@@ -49,15 +49,15 @@ class Factory
     /**
      * Creates an impression value object
      *
-     * @param TrackableCampaign $campaign
-     * @param int               $impressionsToday
-     * @param int               $impressionsTotal
+     * @param TrackableCampaignInterface $campaign
+     * @param int                        $impressionsToday
+     * @param int                        $impressionsTotal
      *
-     * @param bool              $isShowingAllowed
+     * @param bool                       $isShowingAllowed
      *
      * @return \Artkonekt\Kampaign\Impression\Impressions
      */
-    public static function ci(TrackableCampaign $campaign, $impressionsToday, $impressionsTotal, $isShowingAllowed = true)
+    public static function ci(TrackableCampaignInterface $campaign, $impressionsToday, $impressionsTotal, $isShowingAllowed = true)
     {
         return new Impressions($campaign, $impressionsToday, $impressionsTotal, $isShowingAllowed);
     }

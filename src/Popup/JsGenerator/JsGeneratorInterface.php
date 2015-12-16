@@ -13,17 +13,17 @@
 namespace Artkonekt\Kampaign\Popup\JsGenerator;
 
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaign;
+use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
 
 interface JsGeneratorInterface
 {
     /**
      * Returns the Javascript code which deals with the showing of the popup.
      *
-     * @param TrackableCampaign                              $campaign
+     * @param TrackableCampaignInterface                     $campaign
      * @param                                                $timeout The timeout after which the popup should appear in seconds.
      *
      * @return string
      */
-    public function getScript(TrackableCampaign $campaign, $timeout);
+    public function getScript(TrackableCampaignInterface $campaign, $timeout);
 }

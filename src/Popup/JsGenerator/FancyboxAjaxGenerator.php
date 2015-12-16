@@ -13,7 +13,7 @@
 namespace Artkonekt\Kampaign\Popup\JsGenerator;
 
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaign;
+use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
 use Artkonekt\Kampaign\Common\DataResolver;
 
 /**
@@ -41,12 +41,12 @@ class FancyboxAjaxGenerator implements JsGeneratorInterface, AjaxAwareGenerator
      *
      * We show a fancybox, which gets its content from the specified URL via AJAX, after a specified timeout.
      *
-     * @param TrackableCampaign                              $campaign
+     * @param TrackableCampaignInterface                     $campaign
      * @param                                                $timeout The timeout after which the popup should appear in seconds.
      *
      * @return string
      */
-    public function getScript(TrackableCampaign $campaign, $timeout)
+    public function getScript(TrackableCampaignInterface $campaign, $timeout)
     {
         $js = sprintf('
         (function () {

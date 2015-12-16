@@ -12,7 +12,7 @@
 
 namespace Artkonekt\Kampaign\Impression;
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaign;
+use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
 use Artkonekt\Kampaign\Common\DataResolver;
 
 /**
@@ -43,7 +43,7 @@ class CookieImpressionsRepository implements ImpressionsRepositoryInterface
      *
      * @return Impressions
      */
-    public function findImpressionsByCampaign(TrackableCampaign $campaign)
+    public function findImpressionsByCampaign(TrackableCampaignInterface $campaign)
     {
         $data = $this->getData($campaign->getTrackingId());
         if (empty($data)) {

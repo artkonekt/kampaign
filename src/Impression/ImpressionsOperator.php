@@ -13,7 +13,7 @@
 namespace Artkonekt\Kampaign\Impression;
 
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaign;
+use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
 
 /**
  * Class ImpressionsOperator
@@ -40,11 +40,11 @@ class ImpressionsOperator
      *
      * TODO: smelly. do the creation in the repo? (probably not a good idea)?
      *
-     * @param TrackableCampaign $campaign
+     * @param TrackableCampaignInterface $campaign
      *
      * @return Impressions
      */
-    public function loadOrCreateFor(TrackableCampaign $campaign)
+    public function loadOrCreateFor(TrackableCampaignInterface $campaign)
     {
         $impressions = $this->impressionsRepository->findImpressionsByCampaign($campaign);
 
@@ -66,9 +66,9 @@ class ImpressionsOperator
     }
 
     /**
-     * @param TrackableCampaign $campaign
+     * @param TrackableCampaignInterface $campaign
      */
-    public function disableFor(TrackableCampaign $campaign)
+    public function disableFor(TrackableCampaignInterface $campaign)
     {
         $impressions = $this->loadOrCreateFor($campaign);
         $impressions->disable();
