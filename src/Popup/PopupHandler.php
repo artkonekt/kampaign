@@ -55,7 +55,11 @@ class PopupHandler
     {
         $campaign = $this->campaignLoader->getCurrentTrackable();
 
-        //TODO: get the timeout from some setting
+        //If no campaign is to be tracked, we have no js snippet.
+        if (!$campaign) {
+            return '';
+        }
+
         return $this->popupInitiator->getJsSnippet($campaign, 1);
     }
 
