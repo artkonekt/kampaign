@@ -62,7 +62,8 @@ class ScriptExtractor
     private function process()
     {
         $dom = new \DOMDocument();
-        $dom->loadHTML($this->html);
+
+        @$dom->loadHTML($this->html);
 
         $this->scripts = [];
 

@@ -44,7 +44,15 @@ interface TrackableCampaignInterface
 
     /**
      * Returns the contents to be rendered in the popup
+     *
      * @return string
      */
     public function getContent();
+
+    /**
+     * Returns the list id.
+     *
+     * @return mixed
+     */
+    public function getListId();
 }

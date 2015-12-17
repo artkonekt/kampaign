@@ -72,7 +72,9 @@ class SubscriptionHandler
         $email = $this->dataResolver->getEmail();
         $campaign = $this->campaignLoader->getTracked();
 
-        if ($this->newsletterSubscriber->subscribe($email)) {
+        $listId = $campaign->getListId();
+
+        if ($this->newsletterSubscriber->subscribe($email, $listId)) {
             echo sprintf('Email "%s" subscribed successfully through campaign %s', $email, $campaign->getTrackingId());
             $this->impressionsOperator->disableFor($campaign);
         } else {

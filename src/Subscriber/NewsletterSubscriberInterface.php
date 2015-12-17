@@ -22,9 +22,14 @@ interface NewsletterSubscriberInterface
     /**
      * @param $email
      *
+     * @param $listId
+     *
      * @return mixed
      */
-    public function subscribe($email);
+    public function subscribe($email, $listId);
 
+    /**
+     * @return mixed
+     */
     public function getErrorMessage();
 }
