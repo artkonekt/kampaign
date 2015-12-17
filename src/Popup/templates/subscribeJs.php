@@ -18,10 +18,12 @@ $(document).ready(function () {
             $('#subscription-success').html(data);
             $('#subscription-success').show();
             $('#nlc-subscriber-form').hide();
+            $('#subscription-error').hide();
         },
         error: function(data, textStatus, errorThrown) {
             $('#subscription-error').html(errorThrown);
             $('#subscription-error').show();
+            $('#subscription-success').hide();
         }
     });
 
