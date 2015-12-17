@@ -174,4 +174,15 @@ class Campaign implements TrackableCampaignInterface
             </div>
             <p class="alert alert-info">Subscribe to our newsletter via our campaign ' . $this->getTrackingId() . '</p>
         ';
-    }}
+    }
+
+    /**
+     * Returns the list id.
+     *
+     * @return mixed
+     */
+    public function getListId()
+    {
+        return 'listid';
+    }
+}
