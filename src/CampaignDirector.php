@@ -41,9 +41,9 @@ class CampaignDirector
      *
      * @return string
      */
-    public function getPopupInitializerJsSnippet()
+    public function getPopupInitializerJsSnippet($timeout = 5)
     {
-        return $this->popupHandler->getPopupInitializerJsSnippet();
+        return $this->popupHandler->getPopupInitializerJsSnippet($timeout);
     }
 
     /**
