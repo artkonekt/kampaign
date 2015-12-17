@@ -47,11 +47,15 @@ class MailchimpNewsletterSubscriber implements NewsletterSubscriberInterface
      *
      * @return bool
      */
-    public function subscribe($email)
+    public function subscribe($email, $listId)
     {
+        if (!$listId) {
+            $listId = $this->listId;
+        }
+
         try {
             $api = new Mailchimp($this->apiKey, []);
-            $api->lists->subscribe($this->listId, ['email' => $email], $this->mergeVars, $this->emailType, $this->doubleOptin);
+            $api->lists->subscribe($listId, ['email' => $email], $this->mergeVars, $this->emailType, $this->doubleOptin);
         } catch (\Exception $e) {
             $this->errorMessage = $e->getMessage();
             return false;
