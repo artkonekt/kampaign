@@ -43,6 +43,10 @@ class CampaignDirector
      */
     public function getPopupInitializerJsSnippet($timeout = 5)
     {
+        if (!is_numeric($timeout)) {
+            $timeout = 5;
+        }
+
         return $this->popupHandler->getPopupInitializerJsSnippet($timeout);
     }
 

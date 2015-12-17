@@ -51,7 +51,7 @@ class PopupHandler
      *
      * @return string
      */
-    public function getPopupInitializerJsSnippet($timeout = 5)
+    public function getPopupInitializerJsSnippet($timeout)
     {
         $campaign = $this->campaignLoader->getCurrentTrackable();
 
