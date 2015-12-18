@@ -70,7 +70,7 @@ class PopupRenderer
 
         $template = '';
 
-        if ($impressions->canBeIncreasedToday()) {
+        if ($this->impressionsOperator->areImpressionsEnabled() && $impressions->canBeIncreasedToday()) {
             $template = $this->newsletterFormTransformer->transform($campaign, $impressions, $campaign->getContent());
         }
 

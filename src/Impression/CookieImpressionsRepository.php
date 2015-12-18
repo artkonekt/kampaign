@@ -50,7 +50,7 @@ class CookieImpressionsRepository implements ImpressionsRepositoryInterface
             return null;
         }
 
-        return new Impressions($campaign, $this->getImpressionsForToday($data), $this->getTotalImpressions($data), $this->isShowingAllowed($data));
+        return new Impressions($campaign, $this->getImpressionsForToday($data), $this->getTotalImpressions($data));
     }
 
     /**
@@ -63,13 +63,36 @@ class CookieImpressionsRepository implements ImpressionsRepositoryInterface
         $array = [
             $this->getTodaysImpressionsKey() => $impressions->getForToday(),
             self::TOTAL_IMPRESSIONS_KEY => $impressions->getTotal(),
-            self::IS_SHOWING_ALLOWED_KEY => $impressions->isShowingAllowed()
         ];
 
         $allData[$impressions->getCampaignTrackingId()] = $array;
 
         $encodedCookieData = $this->encode($allData);
 
+        $this->dataResolver->setCookie(DataResolver::COOKIE_NAME, $encodedCookieData, time() + $this->getCookieLifetime(), '/');
+    }
+
+    /**
+     * Returns whether impressions are globally enabled for any campaigns.
+     *
+     * @return mixed
+     */
+    public function areEnabled()
+    {
+        $allData = $this->getAllData();
+        return isset($allData[self::IS_SHOWING_ALLOWED_KEY]) ? ((bool)$allData[self::IS_SHOWING_ALLOWED_KEY]) : true;
+    }
+
+    /**
+     * Disables all impressions in the future.
+     *
+     * @return mixed
+     */
+    public function disableFutureImpressions()
+    {
+        $allData = $this->getAllData();
+        $allData[self::IS_SHOWING_ALLOWED_KEY] = 0;
+        $encodedCookieData = $this->encode($allData);
         $this->dataResolver->setCookie(DataResolver::COOKIE_NAME, $encodedCookieData, time() + $this->getCookieLifetime(), '/');
     }
 
@@ -96,18 +119,6 @@ class CookieImpressionsRepository implements ImpressionsRepositoryInterface
     private function getTotalImpressions($data)
     {
         return isset($data[self::TOTAL_IMPRESSIONS_KEY]) ? $data[self::TOTAL_IMPRESSIONS_KEY] : 0;
-    }
-
-    /**
-     * Returns if showing is allowed from the data.
-     *
-     * @param array $data
-     *
-     * @return bool
-     */
-    private function isShowingAllowed($data)
-    {
-        return isset($data[self::IS_SHOWING_ALLOWED_KEY]) ? $data[self::IS_SHOWING_ALLOWED_KEY] : true;
     }
 
     /**

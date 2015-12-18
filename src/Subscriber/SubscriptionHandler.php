@@ -76,7 +76,7 @@ class SubscriptionHandler
 
         if ($this->newsletterSubscriber->subscribe($email, $listId)) {
             echo sprintf('Email "%s" subscribed successfully through campaign %s', $email, $campaign->getTrackingId());
-            $this->impressionsOperator->disableFor($campaign);
+            $this->impressionsOperator->disableFutureImpressions();
         } else {
             header("HTTP/1.0 400 " . $this->newsletterSubscriber->getErrorMessage());
         }

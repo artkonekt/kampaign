@@ -181,7 +181,7 @@ class CampaignDirectorBuilder
             $transformer = null;
 
             if ($this->isDebugModeEnabled) {
-                $transformer = new DebugTransformer();
+                $transformer = new DebugTransformer($this->getImpressionsOperator());
             }
             $this->popupRenderer = new PopupRenderer(
                 $this->getImpressionsOperator(),

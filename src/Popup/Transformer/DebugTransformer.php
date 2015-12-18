@@ -15,6 +15,7 @@ namespace Artkonekt\Kampaign\Popup\Transformer;
 
 use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
 use Artkonekt\Kampaign\Impression\Impressions;
+use Artkonekt\Kampaign\Impression\ImpressionsOperator;
 
 /**
  * Class DebugTransformer
@@ -23,6 +24,20 @@ use Artkonekt\Kampaign\Impression\Impressions;
  */
 class DebugTransformer implements TransformerInterface
 {
+    /**
+     * @var ImpressionsOperator
+     */
+    private $impressionsOperator;
+
+    /**
+     * DebugTransformer constructor.
+     *
+     * @param ImpressionsOperator $impressionsOperator
+     */
+    public function __construct(ImpressionsOperator $impressionsOperator)
+    {
+        $this->impressionsOperator = $impressionsOperator;
+    }
 
     /**
      * @param TrackableCampaignInterface                                                  $campaign
@@ -45,12 +60,14 @@ class DebugTransformer implements TransformerInterface
      */
     private function getVisibilityText(TrackableCampaignInterface $campaign, Impressions $impressions)
     {
-        if ($impressions->canBeIncreasedToday()) {
-            $text = 'Popup is showed in normal mode. This is impression ' . ($impressions->getForToday()+1) . ' out of ' . $campaign->getMaxImpressionPerDay() . ' for today';
-        } elseif ($impressions->isShowingAllowed()) {
-            $text = 'Popup is not showed in normal mode. The ' . $campaign->getMaxImpressionPerDay() . ' impressions for today  were exhausted.';
-        } else {
-            $text = 'Popup is not showed in normal mode. Impressions were disabled';
+        if ($this->impressionsOperator->areImpressionsEnabled()) {
+            if ($impressions->canBeIncreasedToday()) {
+                $text = 'Popup is showed in normal mode. This is impression ' . ($impressions->getForToday()+1) . ' out of ' . $campaign->getMaxImpressionPerDay() . ' for today';
+            } else {
+                $text = 'Popup is not showed in normal mode. The ' . $campaign->getMaxImpressionPerDay() . ' impressions for today  were exhausted.';
+            }
+        }  else {
+            $text = 'Popup is not showed in normal mode. All impressions were disabled.';
         }
 
         ob_start();

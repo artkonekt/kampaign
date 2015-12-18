@@ -66,12 +66,18 @@ class ImpressionsOperator
     }
 
     /**
-     * @param TrackableCampaignInterface $campaign
+     * Disables all future impressions of all campaigns.
      */
-    public function disableFor(TrackableCampaignInterface $campaign)
+    public function disableFutureImpressions()
     {
-        $impressions = $this->loadOrCreateFor($campaign);
-        $impressions->disable();
-        $this->impressionsRepository->save($impressions);
+        $this->impressionsRepository->disableFutureImpressions();
+    }
+
+    /**
+     * Returns whether impressions are enabled.
+     */
+    public function areImpressionsEnabled()
+    {
+        return $this->impressionsRepository->areEnabled();
     }
 }

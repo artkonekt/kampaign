@@ -37,4 +37,17 @@ interface ImpressionsRepositoryInterface
      */
     public function save(Impressions $impressions);
 
+    /**
+     * Returns whether impressions are globally enabled for any campaigns.
+     *
+     * @return mixed
+     */
+    public function areEnabled();
+
+    /**
+     * Disables all impressions in the future.
+     * @return mixed
+     */
+    public function disableFutureImpressions();
+
 }

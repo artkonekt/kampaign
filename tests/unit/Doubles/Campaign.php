@@ -183,6 +183,6 @@ class Campaign implements TrackableCampaignInterface
      */
     public function getListId()
     {
-        return 'listid';
+        return null;
     }
 }

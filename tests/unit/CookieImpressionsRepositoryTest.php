@@ -68,7 +68,7 @@ class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
 
     public function testFindExistingImpressions()
     {
-        $impressions = Factory::cici(3, 10, 1, 2, true, 567);
+        $impressions = Factory::cici(3, 10, 1, 2, 567);
 
         $this->save($impressions);
 
@@ -76,13 +76,12 @@ class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(1, $impressions->getForToday());
         $this->assertEquals(2, $impressions->getTotal());
-        $this->assertTrue($impressions->isShowingAllowed());
         $this->assertEquals(567, $impressions->getCampaignTrackingId());
     }
 
     public function testFindExistingImpressionsWithShowingDisabled()
     {
-        $impressions = Factory::cici(3, 10, 1, 2, false);
+        $impressions = Factory::cici(3, 10, 1, 2);
 
         $this->save($impressions);
 
@@ -90,7 +89,6 @@ class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(1, $impressions->getForToday());
         $this->assertEquals(2, $impressions->getTotal());
-        $this->assertFalse($impressions->isShowingAllowed());
     }
 
 
@@ -125,14 +123,13 @@ class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
         $c = Factory::cci(3, 10, $campaignId);
         $this->assertNull($this->findByCampaign($c));
 
-        $impressions = Factory::cici(3, 10, 6, 8, true, $campaignId);
+        $impressions = Factory::cici(3, 10, 6, 8, $campaignId);
         $this->save($impressions);
 
         $impressions = $this->findByCampaign($impressions->getCampaign());
 
         $this->assertEquals(6, $impressions->getForToday());
         $this->assertEquals(8, $impressions->getTotal());
-        $this->assertTrue($impressions->isShowingAllowed());
 
     }
 
@@ -148,8 +145,8 @@ class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
 
     public function testSupportsMultipleCampaigns()
     {
-        $impressions1 = Factory::cici(3, 10, 6, 8, true, 1);
-        $impressions2 = Factory::cici(3, 10, 6, 8, true, 2);
+        $impressions1 = Factory::cici(3, 10, 6, 8, 1);
+        $impressions2 = Factory::cici(3, 10, 6, 8, 2);
 
         $this->save($impressions1);
         $this->save($impressions2);
@@ -160,8 +157,8 @@ class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
 
     public function testMultipleCampaignsDataAreOk()
     {
-        $i1 = Factory::cici(3, 10, 2, 8, false, 555);
-        $i2 = Factory::cici(2, 8, 1, 3, true, 556);
+        $i1 = Factory::cici(3, 10, 2, 8, 555);
+        $i2 = Factory::cici(2, 8, 1, 3, 556);
 
         $this->save($i1);
         $this->save($i2);
@@ -171,12 +168,10 @@ class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(2, $impressions1->getForToday());
         $this->assertEquals(8, $impressions1->getTotal());
-        $this->assertFalse($impressions1->isShowingAllowed());
         $this->assertEquals(555, $impressions1->getCampaignTrackingId());
 
         $this->assertEquals(1, $impressions2->getForToday());
         $this->assertEquals(3, $impressions2->getTotal());
-        $this->assertTrue($impressions2->isShowingAllowed());
         $this->assertEquals(556, $impressions2->getCampaignTrackingId());
     }
 }

@@ -64,25 +64,6 @@ class ImpressionsTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($impressions->hasRemainingForToday());
     }
 
-    public function testShowingNotAllowedDoesntHaveRemaining()
-    {
-        $impressions = Factory::cici(3, 10, 1, 1, false);
-        $this->assertFalse($impressions->hasRemainingForToday());
-        $this->assertFalse($impressions->hasRemaining());
-    }
-
-    public function testDisableFutureImpressions()
-    {
-        $impressions = Factory::cici(3, 10, 1, 1);
-        $this->assertTrue($impressions->hasRemainingForToday());
-        $this->assertTrue($impressions->hasRemaining());
-
-        $impressions->disable();
-
-        $this->assertFalse($impressions->hasRemainingForToday());
-        $this->assertFalse($impressions->hasRemaining());
-    }
-
     public function testIncrementImpressions()
     {
         $impressions = Factory::cici(3, 10, 1, 2);
@@ -104,19 +85,13 @@ class ImpressionsTest extends PHPUnit_Framework_TestCase
 
     public function testImpressionsCanBeIncreasedToday()
     {
-        $impressions = Factory::cici(3, 10, 1, 2, true);
+        $impressions = Factory::cici(3, 10, 1, 2);
         $this->assertTrue($impressions->canBeIncreasedToday());
-    }
-
-    public function testImpressionsCannotBeIncreasedTodayIfShowingIsNotAllowed()
-    {
-        $impressions = Factory::cici(3, 10, 1, 2, false);
-        $this->assertFalse($impressions->canBeIncreasedToday());
     }
 
     public function testImpressionsCannotBeIncreasedTodayIfHasNoRemainingImpressionsForToday()
     {
-        $impressions = Factory::cici(3, 10, 3, 3, true);
+        $impressions = Factory::cici(3, 10, 3, 3);
         $this->assertFalse($impressions->canBeIncreasedToday());
     }
 }

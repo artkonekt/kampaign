@@ -34,21 +34,14 @@ class Impressions
     private $total;
 
     /**
-     * @var bool
-     */
-    private $isShowingAllowed;
-
-    /**
      * UserImpressions constructor.
      *
      * @param TrackableCampaignInterface                                         $campaign
      * @param int                                                                $today
      * @param int                                                                $total
-     * @param                                                                    $isShowingAllowed
      */
-    public function __construct(TrackableCampaignInterface $campaign, $today, $total, $isShowingAllowed)
+    public function __construct(TrackableCampaignInterface $campaign, $today, $total)
     {
-        $this->isShowingAllowed = $isShowingAllowed;
         $this->campaign = $campaign;
         $this->today = $today;
         $this->total = $total;
@@ -75,30 +68,12 @@ class Impressions
     }
 
     /**
-     * Disables future impressions.
-     */
-    public function disable()
-    {
-        $this->isShowingAllowed = false;
-    }
-
-    /**
      * Increments the impressions.
      */
     public function increment()
     {
         $this->total += 1;
         $this->today += 1;
-    }
-
-    /**
-     * Returns whether showing of the campaign is allowed.
-     *
-     * @return bool
-     */
-    public function isShowingAllowed()
-    {
-        return $this->isShowingAllowed;
     }
 
     /**
@@ -109,7 +84,7 @@ class Impressions
      */
     public function canBeIncreasedToday()
     {
-        return ($this->isShowingAllowed() && $this->hasRemainingForToday());
+        return $this->hasRemainingForToday();
     }
 
     /**
@@ -119,7 +94,7 @@ class Impressions
      */
     public function hasRemainingForToday()
     {
-        return ($this->isShowingAllowed && $this->getRemainingForToday() > 0);
+        return $this->getRemainingForToday() > 0;
     }
 
     /**
@@ -129,7 +104,7 @@ class Impressions
      */
     public function hasRemaining()
     {
-        return ($this->isShowingAllowed && $this->getRemainingTotal() > 0);
+        return $this->getRemainingTotal() > 0;
     }
 
     /**

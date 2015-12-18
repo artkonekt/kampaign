@@ -57,9 +57,9 @@ class Factory
      *
      * @return \Artkonekt\Kampaign\Impression\Impressions
      */
-    public static function ci(TrackableCampaignInterface $campaign, $impressionsToday, $impressionsTotal, $isShowingAllowed = true)
+    public static function ci(TrackableCampaignInterface $campaign, $impressionsToday, $impressionsTotal)
     {
-        return new Impressions($campaign, $impressionsToday, $impressionsTotal, $isShowingAllowed);
+        return new Impressions($campaign, $impressionsToday, $impressionsTotal);
     }
 
     /**
@@ -76,9 +76,9 @@ class Factory
      *
      * @return \Artkonekt\Kampaign\Impression\Impressions
      */
-    public static function cici($maxImpressionsPerDay, $maxImpressions, $impressionsToday, $impressionsTotal, $isShowingAllowed = true, $campaignId = 1)
+    public static function cici($maxImpressionsPerDay, $maxImpressions, $impressionsToday, $impressionsTotal, $campaignId = 1)
     {
         $c = self::cci($maxImpressionsPerDay, $maxImpressions, $campaignId);
-        return self::ci($c, $impressionsToday, $impressionsTotal, $isShowingAllowed);
+        return self::ci($c, $impressionsToday, $impressionsTotal);
     }
 }
