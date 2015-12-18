@@ -136,6 +136,10 @@ class CampaignDirectorBuilder
             $this->dataResolver = new DataResolver($_GET, $_POST, $_COOKIE);
         }
 
+        if (!$this->isDebugModeEnabled) {
+            $this->isDebugModeEnabled = $this->dataResolver->isOnDemandDebugModeEnabled();
+        }
+
         return $this->dataResolver;
     }
 

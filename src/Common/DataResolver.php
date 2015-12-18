@@ -24,6 +24,7 @@ class DataResolver
     const COOKIE_NAME = 'nci';
     const CAMPAIGN_ID_KEY = 'kampaigncid';
     const SUBSCRIBER_EMAIL_KEY = 'kampaignemail';
+    const DEBUG_MODE_KEY = 'kmpdbg';
 
     /** @var array */
     private $get;
@@ -79,6 +80,11 @@ class DataResolver
         }
 
         return $this->cookie[self::COOKIE_NAME];
+    }
+
+    public function isOnDemandDebugModeEnabled()
+    {
+        return isset($this->get[self::DEBUG_MODE_KEY]);
     }
 
     /**
