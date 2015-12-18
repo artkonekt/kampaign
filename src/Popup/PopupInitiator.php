@@ -61,7 +61,7 @@ class PopupInitiator
     {
         $impressions = $this->impressionsOperator->loadOrCreateFor($campaign);
 
-        if ($this->impressionsOperator->areImpressionsEnabled() || $this->isDebugModeEnabled) {
+        if (($this->impressionsOperator->areImpressionsEnabled() && $impressions->canBeIncreasedToday()) || $this->isDebugModeEnabled) {
             return $this->jsGenerator->getScript($campaign, $timeout);
         } else {
             return '';
