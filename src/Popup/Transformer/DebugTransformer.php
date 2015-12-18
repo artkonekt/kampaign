@@ -53,6 +53,9 @@ class DebugTransformer implements TransformerInterface
             $text = 'Popup is not showed in normal mode. Impressions were disabled';
         }
 
-        return sprintf('<div style="background-color: red; color: black; padding: 10px;"><b>DEBUG INFO</b>: %s</div>', $text);
+        ob_start();
+        require_once(__DIR__ . '/../templates/debug.php');
+        $content = ob_get_clean();
+        return $content;
     }
 }

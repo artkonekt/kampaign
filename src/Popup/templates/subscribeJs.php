@@ -6,7 +6,7 @@ use Artkonekt\Kampaign\Common\DataResolver;
 
 <script>
 $(document).ready(function () {
-    $('body').on('submit', '#nlc-subscriber-form', function () {
+    $('body').on('submit', '#nlc-subscriber-form', function() {
         $.ajax({
             url: "<?= $this->subscriptionUrl ?>",
             method: "POST",
