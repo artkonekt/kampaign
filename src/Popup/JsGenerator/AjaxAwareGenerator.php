@@ -2,7 +2,7 @@
 /**
  * Contains interface AjaxAwareGenerator
  *
- * @package     Artkonekt\Kampaign\Popup\JsGenerator
+ * @package     Konekt\Kampaign\Popup\JsGenerator
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary
@@ -10,7 +10,7 @@
  * @version     2015-12-15
  */
 
-namespace Artkonekt\Kampaign\Popup\JsGenerator;
+namespace Konekt\Kampaign\Popup\JsGenerator;
 
 
 interface AjaxAwareGenerator

@@ -10,16 +10,16 @@
  * @version     2015-12-09
  */
 
-namespace Artkonekt\Kampaign\Popup\JsGenerator;
+namespace Konekt\Kampaign\Popup\JsGenerator;
 
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
-use Artkonekt\Kampaign\Common\DataResolver;
+use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
+use Konekt\Kampaign\Common\DataResolver;
 
 /**
  * Class FancyboxAjaxGenerator
  *
- * @package Artkonekt\Kampaign\JsGenerator
+ * @package Konekt\Kampaign\JsGenerator
  */
 class FancyboxAjaxGenerator implements JsGeneratorInterface, AjaxAwareGenerator
 {

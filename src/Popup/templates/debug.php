@@ -1,4 +1,4 @@
-<?php use Artkonekt\Kampaign\Common\DataResolver; ?>
+<?php use Konekt\Kampaign\Common\DataResolver; ?>
 
 <div class="alert alert-danger">
     <b>DEBUG INFO</b>: <?= $text ?>

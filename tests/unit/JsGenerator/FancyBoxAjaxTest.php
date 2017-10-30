@@ -10,12 +10,12 @@
  * @version     2015-12-09
  */
 
-namespace Artkonekt\Kampaign\Tests;
+namespace Konekt\Kampaign\Tests;
 
 
-use Artkonekt\Kampaign\Common\DataResolver;
-use Artkonekt\Kampaign\Popup\JsGenerator\FancyboxAjaxGenerator;
-use Artkonekt\Kampaign\Tests\Helper\Factory;
+use Konekt\Kampaign\Common\DataResolver;
+use Konekt\Kampaign\Popup\JsGenerator\FancyboxAjaxGenerator;
+use Konekt\Kampaign\Tests\Helper\Factory;
 use PHPUnit_Framework_TestCase;
 
 class FancyBoxAjaxTest extends PHPUnit_Framework_TestCase

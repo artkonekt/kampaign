@@ -2,7 +2,7 @@
 /**
  * Contains class SubscriptionHandler
  *
- * @package     Artkonekt\Kampaign\Prototype
+ * @package     Konekt\Kampaign\Prototype
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary
@@ -10,16 +10,16 @@
  * @version     2015-12-15
  */
 
-namespace Artkonekt\Kampaign\Subscriber;
+namespace Konekt\Kampaign\Subscriber;
 
-use Artkonekt\Kampaign\Campaign\CampaignLoader;
-use Artkonekt\Kampaign\Common\DataResolver;
-use Artkonekt\Kampaign\Impression\ImpressionsOperator;
+use Konekt\Kampaign\Campaign\CampaignLoader;
+use Konekt\Kampaign\Common\DataResolver;
+use Konekt\Kampaign\Impression\ImpressionsOperator;
 
 /**
  * Class SubscriptionHandler
  *
- * @package Artkonekt\Kampaign\Prototype
+ * @package Konekt\Kampaign\Prototype
  */
 class SubscriptionHandler
 {

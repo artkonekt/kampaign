@@ -1,13 +1,13 @@
 <?php
 
-namespace Artkonekt\Kampaign;
-use Artkonekt\Kampaign\Popup\PopupHandler;
-use Artkonekt\Kampaign\Subscriber\SubscriptionHandler;
+namespace Konekt\Kampaign;
+use Konekt\Kampaign\Popup\PopupHandler;
+use Konekt\Kampaign\Subscriber\SubscriptionHandler;
 
 /**
  * Class CampaignDirector
  *
- * @package Artkonekt\Kampaign
+ * @package Konekt\Kampaign
  */
 class CampaignDirector
 {

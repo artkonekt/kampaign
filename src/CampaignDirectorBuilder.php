@@ -2,7 +2,7 @@
 /**
  * Contains class CampaignDirectorFactory
  *
- * @package     Artkonekt\Kampaign\Prototype
+ * @package     Konekt\Kampaign\Prototype
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary
@@ -10,30 +10,30 @@
  * @version     2015-12-14
  */
 
-namespace Artkonekt\Kampaign;
+namespace Konekt\Kampaign;
 
 
-use Artkonekt\Kampaign\Campaign\CampaignLoader;
-use Artkonekt\Kampaign\Campaign\CampaignRepositoryInterface;
-use Artkonekt\Kampaign\Common\DataResolver;
-use Artkonekt\Kampaign\Impression\CookieImpressionsRepository;
-use Artkonekt\Kampaign\Impression\ImpressionsOperator;
-use Artkonekt\Kampaign\Impression\ImpressionsRepositoryInterface;
-use Artkonekt\Kampaign\Popup\JsGenerator\FancyboxGenerator;
-use Artkonekt\Kampaign\Popup\JsGenerator\JsGeneratorInterface;
-use Artkonekt\Kampaign\Popup\JsGenerator\RendererAwareInterface;
-use Artkonekt\Kampaign\Popup\PopupHandler;
-use Artkonekt\Kampaign\Popup\PopupInitiator;
-use Artkonekt\Kampaign\Popup\PopupRenderer;
-use Artkonekt\Kampaign\Popup\Transformer\DebugTransformer;
-use Artkonekt\Kampaign\Popup\Transformer\NewsletterFormTransformer;
-use Artkonekt\Kampaign\Subscriber\MailchimpNewsletterSubscriber;
-use Artkonekt\Kampaign\Subscriber\SubscriptionHandler;
+use Konekt\Kampaign\Campaign\CampaignLoader;
+use Konekt\Kampaign\Campaign\CampaignRepositoryInterface;
+use Konekt\Kampaign\Common\DataResolver;
+use Konekt\Kampaign\Impression\CookieImpressionsRepository;
+use Konekt\Kampaign\Impression\ImpressionsOperator;
+use Konekt\Kampaign\Impression\ImpressionsRepositoryInterface;
+use Konekt\Kampaign\Popup\JsGenerator\FancyboxGenerator;
+use Konekt\Kampaign\Popup\JsGenerator\JsGeneratorInterface;
+use Konekt\Kampaign\Popup\JsGenerator\RendererAwareInterface;
+use Konekt\Kampaign\Popup\PopupHandler;
+use Konekt\Kampaign\Popup\PopupInitiator;
+use Konekt\Kampaign\Popup\PopupRenderer;
+use Konekt\Kampaign\Popup\Transformer\DebugTransformer;
+use Konekt\Kampaign\Popup\Transformer\NewsletterFormTransformer;
+use Konekt\Kampaign\Subscriber\MailchimpNewsletterSubscriber;
+use Konekt\Kampaign\Subscriber\SubscriptionHandler;
 
 /**
  * Class CampaignDirectorBuilder
  *
- * @package Artkonekt\Kampaign\Prototype
+ * @package Konekt\Kampaign\Prototype
  */
 class CampaignDirectorBuilder
 {
@@ -144,7 +144,7 @@ class CampaignDirectorBuilder
     }
 
     /**
-     * @return \Artkonekt\Kampaign\Impression\CookieImpressionsRepository
+     * @return \Konekt\Kampaign\Impression\CookieImpressionsRepository
      */
     private function getImpressionsRepository()
     {

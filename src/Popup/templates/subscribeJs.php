@@ -1,6 +1,6 @@
 <?php
 
-use Artkonekt\Kampaign\Common\DataResolver;
+use Konekt\Kampaign\Common\DataResolver;
 
 ?>
 

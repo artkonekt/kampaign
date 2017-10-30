@@ -10,10 +10,10 @@
  * @version     2015-12-09
  */
 
-namespace Artkonekt\Kampaign\Popup\JsGenerator;
+namespace Konekt\Kampaign\Popup\JsGenerator;
 
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
+use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
 
 interface JsGeneratorInterface
 {

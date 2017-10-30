@@ -1,6 +1,6 @@
 <?php
 
-namespace Artkonekt\Kampaign\Subscriber;
+namespace Konekt\Kampaign\Subscriber;
 
 use Mailchimp;
 

@@ -2,7 +2,7 @@
 /**
  * Contains class CookieImpressionsRepositoryTest
  *
- * @package     Artkonekt\Kampaign\Tests
+ * @package     Konekt\Kampaign\Tests
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary
@@ -10,15 +10,15 @@
  * @version     2015-12-08
  */
 
-namespace Artkonekt\Kampaign\Tests;
+namespace Konekt\Kampaign\Tests;
 
 
-use Artkonekt\Kampaign\Campaign;
-use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
-use Artkonekt\Kampaign\Common\DataResolver;
-use Artkonekt\Kampaign\Impression\CookieImpressionsRepository;
-use Artkonekt\Kampaign\Impression\Impressions;
-use Artkonekt\Kampaign\Tests\Helper\Factory;
+use Konekt\Kampaign\Campaign;
+use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
+use Konekt\Kampaign\Common\DataResolver;
+use Konekt\Kampaign\Impression\CookieImpressionsRepository;
+use Konekt\Kampaign\Impression\Impressions;
+use Konekt\Kampaign\Tests\Helper\Factory;
 use PHPUnit_Framework_Error_Warning;
 use PHPUnit_Framework_TestCase;
 

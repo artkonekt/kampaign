@@ -2,7 +2,7 @@
 /**
  * Contains class ImpressionOperator
  *
- * @package     Artkonekt\Kampaign\Impression
+ * @package     Konekt\Kampaign\Impression
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary
@@ -10,19 +10,19 @@
  * @version     2015-12-15
  */
 
-namespace Artkonekt\Kampaign\Impression;
+namespace Konekt\Kampaign\Impression;
 
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
+use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
 
 /**
  * Class ImpressionsOperator
  *
- * @package Artkonekt\Kampaign\Impression
+ * @package Konekt\Kampaign\Impression
  */
 class ImpressionsOperator
 {
-    /** @var \Artkonekt\Kampaign\Impression\ImpressionsRepositoryInterface */
+    /** @var \Konekt\Kampaign\Impression\ImpressionsRepositoryInterface */
     private $impressionsRepository;
 
     /**

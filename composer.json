@@ -1,15 +1,20 @@
 {
-    "name": "artkonekt/kampaign",
-    "description": "Simple newsletter campaign manager",
+    "name": "konekt/kampaign",
+    "description": "Simple newsletter/popup campaign manager",
     "license": "MIT",
-    "keywords": ["kampaign"],
+    "keywords": ["kampaign", "artkonekt", "mailchimp"],
     "authors": [
         {
             "name": "Lajos Fazakas",
             "email": "lajos@artkonekt.com"
+        },
+        {
+            "name": "Attila Fulop",
+            "homepage": "https://github.com/fulopattila122"
         }
     ],
     "require": {
+        "php": "5.5 - 7.0"
         "mailchimp/mailchimp": "^2.0"
     },
     "require-dev": {
@@ -17,12 +22,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Artkonekt\\Kampaign\\": "src"
+            "Konekt\\Kampaign\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Artkonekt\\Kampaign\\Tests\\": "tests/unit"
+            "Konekt\\Kampaign\\Tests\\": "tests/unit"
         }
     }
 }

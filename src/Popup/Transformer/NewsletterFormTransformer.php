@@ -2,7 +2,7 @@
 /**
  * Contains class NewsletterFormTransformer
  *
- * @package     Artkonekt\Kampaign\Popup\Transformer
+ * @package     Konekt\Kampaign\Popup\Transformer
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary
@@ -10,12 +10,12 @@
  * @version     2015-12-16
  */
 
-namespace Artkonekt\Kampaign\Popup\Transformer;
+namespace Konekt\Kampaign\Popup\Transformer;
 
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
-use Artkonekt\Kampaign\Common\DataResolver;
-use Artkonekt\Kampaign\Impression\Impressions;
+use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
+use Konekt\Kampaign\Common\DataResolver;
+use Konekt\Kampaign\Impression\Impressions;
 
 class NewsletterFormTransformer
 {

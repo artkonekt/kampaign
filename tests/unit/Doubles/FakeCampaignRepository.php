@@ -1,8 +1,8 @@
 <?php
 
-namespace Artkonekt\Kampaign\Tests\Doubles;
+namespace Konekt\Kampaign\Tests\Doubles;
 
-use Artkonekt\Kampaign\Campaign\CampaignRepositoryInterface;
+use Konekt\Kampaign\Campaign\CampaignRepositoryInterface;
 use DateTime;
 
 /**

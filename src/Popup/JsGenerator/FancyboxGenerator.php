@@ -2,7 +2,7 @@
 /**
  * Contains class FancyboxGenerator
  *
- * @package     Artkonekt\Kampaign\JsGenerator
+ * @package     Konekt\Kampaign\JsGenerator
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary
@@ -10,17 +10,17 @@
  * @version     2015-12-14
  */
 
-namespace Artkonekt\Kampaign\Popup\JsGenerator;
+namespace Konekt\Kampaign\Popup\JsGenerator;
 
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
-use Artkonekt\Kampaign\Popup\PopupRenderer;
-use Artkonekt\Kampaign\Popup\JsGenerator\Util\ScriptExtractor;
+use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
+use Konekt\Kampaign\Popup\PopupRenderer;
+use Konekt\Kampaign\Popup\JsGenerator\Util\ScriptExtractor;
 
 /**
  * Class FancyboxGenerator
  *
- * @package Artkonekt\Kampaign\JsGenerator
+ * @package Konekt\Kampaign\JsGenerator
  */
 class FancyboxGenerator implements JsGeneratorInterface, RendererAwareInterface
 {

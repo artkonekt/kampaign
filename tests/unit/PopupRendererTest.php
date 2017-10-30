@@ -10,7 +10,7 @@
  * @version     2015-12-09
  */
 
-namespace Artkonekt\Kampaign\Tests;
+namespace Konekt\Kampaign\Tests;
 
 
 class PopupRendererTest extends \PHPUnit_Framework_TestCase

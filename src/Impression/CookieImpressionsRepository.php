@@ -2,7 +2,7 @@
 /**
  * Contains class CookieImpressionsRepository
  *
- * @package     Artkonekt\Kampaign
+ * @package     Konekt\Kampaign
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary
@@ -10,10 +10,10 @@
  * @version     2015-12-08
  */
 
-namespace Artkonekt\Kampaign\Impression;
+namespace Konekt\Kampaign\Impression;
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
-use Artkonekt\Kampaign\Common\DataResolver;
+use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
+use Konekt\Kampaign\Common\DataResolver;
 
 /**
  * Class CookieImpressionsRepository

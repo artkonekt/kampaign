@@ -1,6 +1,6 @@
 <?php
 
-namespace Artkonekt\Kampaign\Subscriber;
+namespace Konekt\Kampaign\Subscriber;
 
 /**
  * Contains interface NewsletterSubscriberInterface
@@ -15,7 +15,7 @@ namespace Artkonekt\Kampaign\Subscriber;
 /**
  * Interface NewsletterSubscriberInterface
  *
- * @package Artkonekt\Kampaign\Prototype
+ * @package Konekt\Kampaign\Prototype
  */
 interface NewsletterSubscriberInterface
 {

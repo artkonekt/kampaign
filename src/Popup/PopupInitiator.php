@@ -1,12 +1,12 @@
 <?php
 
-namespace Artkonekt\Kampaign\Popup;
+namespace Konekt\Kampaign\Popup;
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
-use Artkonekt\Kampaign\Impression\ImpressionLoaderTrait;
-use Artkonekt\Kampaign\Impression\ImpressionsOperator;
-use Artkonekt\Kampaign\Popup\JsGenerator\AjaxAwareGenerator;
-use Artkonekt\Kampaign\Popup\JsGenerator\JsGeneratorInterface;
+use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
+use Konekt\Kampaign\Impression\ImpressionLoaderTrait;
+use Konekt\Kampaign\Impression\ImpressionsOperator;
+use Konekt\Kampaign\Popup\JsGenerator\AjaxAwareGenerator;
+use Konekt\Kampaign\Popup\JsGenerator\JsGeneratorInterface;
 
 /**
  * Contains class CampaignPresenter

@@ -2,7 +2,7 @@
 /**
  * Contains class Factory
  *
- * @package     Artkonekt\Kampaign\Tests
+ * @package     Konekt\Kampaign\Tests
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary
@@ -10,11 +10,11 @@
  * @version     2015-12-08
  */
 
-namespace Artkonekt\Kampaign\Tests\Helper;
+namespace Konekt\Kampaign\Tests\Helper;
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
-use Artkonekt\Kampaign\Impression\Impressions;
-use Artkonekt\Kampaign\Tests\Doubles\Campaign;
+use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
+use Konekt\Kampaign\Impression\Impressions;
+use Konekt\Kampaign\Tests\Doubles\Campaign;
 use DateTime;
 
 class Factory
@@ -39,7 +39,7 @@ class Factory
      *
      * @param int $id The ID of the campaign, is equal to 1 if not specified
      *
-     * @return \Artkonekt\Kampaign\Campaign
+     * @return \Konekt\Kampaign\Campaign
      */
     public static function cci($maxImpressionsPerDay, $maxImpressions, $id = 1)
     {
@@ -55,7 +55,7 @@ class Factory
      *
      * @param bool                       $isShowingAllowed
      *
-     * @return \Artkonekt\Kampaign\Impression\Impressions
+     * @return \Konekt\Kampaign\Impression\Impressions
      */
     public static function ci(TrackableCampaignInterface $campaign, $impressionsToday, $impressionsTotal)
     {
@@ -74,7 +74,7 @@ class Factory
      *
      * @param int  $campaignId
      *
-     * @return \Artkonekt\Kampaign\Impression\Impressions
+     * @return \Konekt\Kampaign\Impression\Impressions
      */
     public static function cici($maxImpressionsPerDay, $maxImpressions, $impressionsToday, $impressionsTotal, $campaignId = 1)
     {

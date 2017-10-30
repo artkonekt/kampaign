@@ -2,7 +2,7 @@
 /**
  * Contains class ImpressionsTest
  *
- * @package     Artkonekt\Kampaign\Tests
+ * @package     Konekt\Kampaign\Tests
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary
@@ -10,9 +10,9 @@
  * @version     2015-12-08
  */
 
-namespace Artkonekt\Kampaign\Tests;
+namespace Konekt\Kampaign\Tests;
 
-use Artkonekt\Kampaign\Tests\Helper\Factory;
+use Konekt\Kampaign\Tests\Helper\Factory;
 use PHPUnit_Framework_TestCase;
 
 class ImpressionsTest extends PHPUnit_Framework_TestCase

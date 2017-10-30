@@ -2,7 +2,7 @@
 /**
  * Contains class PopupRenderer
  *
- * @package     Artkonekt\Kampaign
+ * @package     Konekt\Kampaign
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary
@@ -10,19 +10,19 @@
  * @version     2015-12-09
  */
 
-namespace Artkonekt\Kampaign\Popup;
+namespace Konekt\Kampaign\Popup;
 
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
-use Artkonekt\Kampaign\Impression\ImpressionLoaderTrait;
-use Artkonekt\Kampaign\Impression\ImpressionsOperator;
-use Artkonekt\Kampaign\Popup\Transformer\NewsletterFormTransformer;
-use Artkonekt\Kampaign\Popup\Transformer\TransformerInterface;
+use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
+use Konekt\Kampaign\Impression\ImpressionLoaderTrait;
+use Konekt\Kampaign\Impression\ImpressionsOperator;
+use Konekt\Kampaign\Popup\Transformer\NewsletterFormTransformer;
+use Konekt\Kampaign\Popup\Transformer\TransformerInterface;
 
 /**
  * Class PopupRenderer
  *
- * @package Artkonekt\Kampaign
+ * @package Konekt\Kampaign
  */
 class PopupRenderer
 {

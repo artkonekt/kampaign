@@ -2,7 +2,7 @@
 /**
  * Contains class Campaign
  *
- * @package     Artkonekt\Kampaign
+ * @package     Konekt\Kampaign
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary
@@ -10,9 +10,9 @@
  * @version     2015-12-07
  */
 
-namespace Artkonekt\Kampaign\Tests\Doubles;
+namespace Konekt\Kampaign\Tests\Doubles;
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
+use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
 use DateTime;
 
 /**

@@ -2,7 +2,7 @@
 /**
  * Contains class DebugTransformer
  *
- * @package     Artkonekt\Kampaign\Renderer
+ * @package     Konekt\Kampaign\Renderer
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary
@@ -10,17 +10,17 @@
  * @version     2015-12-09
  */
 
-namespace Artkonekt\Kampaign\Popup\Transformer;
+namespace Konekt\Kampaign\Popup\Transformer;
 
 
-use Artkonekt\Kampaign\Campaign\TrackableCampaignInterface;
-use Artkonekt\Kampaign\Impression\Impressions;
-use Artkonekt\Kampaign\Impression\ImpressionsOperator;
+use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
+use Konekt\Kampaign\Impression\Impressions;
+use Konekt\Kampaign\Impression\ImpressionsOperator;
 
 /**
  * Class DebugTransformer
  *
- * @package Artkonekt\Kampaign\Transformer
+ * @package Konekt\Kampaign\Transformer
  */
 class DebugTransformer implements TransformerInterface
 {
