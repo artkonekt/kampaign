@@ -2,7 +2,7 @@
 
 include 'init.php';
 
-$ad = $adRepository->findById($_POST['id']);
+$ad = $adLoader->getTracked();
 
 switch ($_POST['event']) {
     case 'disabled':

@@ -3,7 +3,7 @@
 include 'init.php';
 
 if ($impressionTracker->areImpressionsEnabled()) {
-    $ad = $adRepository->findCurrent();
+    $ad = $adLoader->getCurrentTrackable();
     $ads = [
         [
             'id' => $ad->getId(),
