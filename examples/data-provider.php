@@ -1,13 +1,20 @@
 <?php
 
-$ads = [
-    [
-        'id' => 12,
-        'timeout' => 2,
-        'content' => str_replace('#ad_no#', '12', file_get_contents('template.php')),
-        'renderer' => 'simple',
-    ]
-];
+include 'init.php';
+
+if ($impressionTracker->areImpressionsEnabled()) {
+    $campaign = $campaignRepository->findCurrent();
+    $ads = [
+        [
+            'id' => $campaign->getId(),
+            'timeout' => 2,
+            'content' => $campaign->getContent(),
+            'renderer' => 'simple',
+        ]
+    ];
+} else {
+    $ads = [];
+}
 
 $trackerSettings = [
     'url' => 'tracker.php',

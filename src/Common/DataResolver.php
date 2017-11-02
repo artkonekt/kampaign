@@ -22,7 +22,7 @@ class DataResolver
 {
 
     const COOKIE_NAME = 'nci';
-    const CAMPAIGN_ID_KEY = 'kampaigncid';
+    const CAMPAIGN_ID_KEY = 'id';
     const DEBUG_MODE_KEY = 'kmpdbg';
 
     /** @var array */

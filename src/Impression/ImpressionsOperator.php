@@ -49,7 +49,7 @@ class ImpressionsOperator
         $impressions = $this->impressionsRepository->findImpressionsByCampaign($campaign);
 
         if (!$impressions) {
-            $impressions = new Impressions($campaign, 0, 0, true);
+            $impressions = new Impressions($campaign, 0, 0);
             $this->impressionsRepository->save($impressions);
         }
 

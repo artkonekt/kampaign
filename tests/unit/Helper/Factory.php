@@ -24,7 +24,7 @@ class Factory
      *
      * @param bool $isActive
      *
-     * @return \Campaign
+     * @return Campaign
      */
     public static function cc($isActive = true)
     {
@@ -39,7 +39,7 @@ class Factory
      *
      * @param int $id The ID of the campaign, is equal to 1 if not specified
      *
-     * @return \Konekt\Kampaign\Campaign
+     * @return Campaign
      */
     public static function cci($maxImpressionsPerDay, $maxImpressions, $id = 1)
     {
@@ -53,9 +53,7 @@ class Factory
      * @param int                        $impressionsToday
      * @param int                        $impressionsTotal
      *
-     * @param bool                       $isShowingAllowed
-     *
-     * @return \Konekt\Kampaign\Impression\Impressions
+     * @return Impressions
      */
     public static function ci(TrackableCampaignInterface $campaign, $impressionsToday, $impressionsTotal)
     {
@@ -65,16 +63,14 @@ class Factory
     /**
      * Creates an impression value object together with its dependent campaign.
      *
-     * @param int  $maxImpressionsPerDay
-     * @param int  $maxImpressions
-     * @param int  $impressionsToday
-     * @param int  $impressionsTotal
+     * @param int $maxImpressionsPerDay
+     * @param int $maxImpressions
+     * @param int $impressionsToday
+     * @param int $impressionsTotal
      *
-     * @param bool $isShowingAllowed
+     * @param int $campaignId
      *
-     * @param int  $campaignId
-     *
-     * @return \Konekt\Kampaign\Impression\Impressions
+     * @return Impressions
      */
     public static function cici($maxImpressionsPerDay, $maxImpressions, $impressionsToday, $impressionsTotal, $campaignId = 1)
     {
