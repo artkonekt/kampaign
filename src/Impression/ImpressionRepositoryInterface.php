@@ -19,7 +19,7 @@ use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
  *
  * @package Konekt\Kampaign
  */
-interface ImpressionsRepositoryInterface
+interface ImpressionRepositoryInterface
 {
     /**
      * Returns the impressions for a campaign.

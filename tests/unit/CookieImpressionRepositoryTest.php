@@ -13,19 +13,18 @@
 namespace Konekt\Kampaign\Tests;
 
 
-use Konekt\Kampaign\Campaign;
 use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
 use Konekt\Kampaign\Common\DataResolver;
-use Konekt\Kampaign\Impression\CookieImpressionsRepository;
+use Konekt\Kampaign\Impression\CookieImpressionRepository;
 use Konekt\Kampaign\Impression\Impressions;
 use Konekt\Kampaign\Tests\Helper\Factory;
 use PHPUnit_Framework_Error_Warning;
 use PHPUnit_Framework_TestCase;
 
-class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
+class CookieImpressionRepositoryTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @var CookieImpressionsRepository
+     * @var CookieImpressionRepository
      */
     private $repo;
 
@@ -36,7 +35,7 @@ class CookieImpressionsRepositoryTest extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
         $_COOKIE = [];
-        $this->repo = new CookieImpressionsRepository(new DataResolver([], [], []));
+        $this->repo = new CookieImpressionRepository(new DataResolver([], [], []));
     }
 
     /**

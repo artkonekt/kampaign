@@ -18,7 +18,7 @@ use Konekt\Kampaign\Common\DataResolver;
 /**
  * Class CookieImpressionsRepository
  */
-class CookieImpressionsRepository implements ImpressionsRepositoryInterface
+class CookieImpressionRepository implements ImpressionRepositoryInterface
 {
     const TOTAL_IMPRESSIONS_KEY = 't';
     const IS_SHOWING_ALLOWED_KEY = 'a';

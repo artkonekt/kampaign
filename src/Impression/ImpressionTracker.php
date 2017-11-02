@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains class ImpressionOperator
+ * Contains class ImpressionTracker
  *
  * @package     Konekt\Kampaign\Impression
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
@@ -16,21 +16,21 @@ namespace Konekt\Kampaign\Impression;
 use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
 
 /**
- * Class ImpressionsOperator
+ * Class ImpressionTracker
  *
  * @package Konekt\Kampaign\Impression
  */
-class ImpressionsOperator
+class ImpressionTracker
 {
-    /** @var \Konekt\Kampaign\Impression\ImpressionsRepositoryInterface */
+    /** @var \Konekt\Kampaign\Impression\ImpressionRepositoryInterface */
     private $impressionsRepository;
 
     /**
-     * ImpressionsOperator constructor.
+     * ImpressionTracker constructor.
      *
      * @param $impressionsRepository
      */
-    public function __construct(ImpressionsRepositoryInterface $impressionsRepository)
+    public function __construct(ImpressionRepositoryInterface $impressionsRepository)
     {
         $this->impressionsRepository = $impressionsRepository;
     }
