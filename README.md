@@ -7,7 +7,7 @@
 [![MIT Software License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE.md)
 
 
-Simple newsletter/popup campaign manager
+Simple popup ad manager
 
 > **2.0** See [Changelog](Changelog.md) for what's being changed since v1.0
 

@@ -2,14 +2,14 @@
 
 include 'init.php';
 
-$campaign = $campaignRepository->findById($_POST['id']);
+$ad = $adRepository->findById($_POST['id']);
 
 switch ($_POST['event']) {
     case 'disabled':
         $impressionTracker->disableFutureImpressions();
         break;
     case 'opened':
-        $impressions = $impressionTracker->loadOrCreateFor($campaign);
+        $impressions = $impressionTracker->loadOrCreateFor($ad);
         $impressionTracker->increase($impressions);
         break;
 }

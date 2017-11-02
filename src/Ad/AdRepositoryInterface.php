@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains interface CampaignRepositoryInterface
+ * Contains interface AdRepositoryInterface
  *
  * @package     Konekt\Kampaign\Prototype
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
@@ -10,25 +10,25 @@
  * @version     2015-12-14
  */
 
-namespace Konekt\Kampaign\Campaign;
+namespace Konekt\Kampaign\Ad;
 
 
 /**
- * Interface CampaignRepositoryInterface
+ * Interface AdRepositoryInterface
  *
- * @package Konekt\Kampaign\Campaign
+ * @package Konekt\Kampaign\Ad
  */
-interface CampaignRepositoryInterface
+interface AdRepositoryInterface
 {
     /**
-     * @return TrackableCampaignInterface
+     * @return TrackableAdInterface
      */
     public function findCurrent();
 
     /**
-     * @param $campaignId
+     * @param $adId
      *
      * @return mixed
      */
-    public function findById($campaignId);
+    public function findById($adId);
 }

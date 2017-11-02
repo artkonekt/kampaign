@@ -1,6 +1,6 @@
 {
     "name": "konekt/kampaign",
-    "description": "Simple newsletter/popup campaign manager",
+    "description": "Simple popup ad manager",
     "license": "MIT",
     "keywords": ["kampaign", "artkonekt", "mailchimp"],
     "authors": [

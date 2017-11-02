@@ -13,7 +13,7 @@
 namespace Konekt\Kampaign\Tests;
 
 
-use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
+use Konekt\Kampaign\Ad\TrackableAdInterface;
 use Konekt\Kampaign\Common\DataResolver;
 use Konekt\Kampaign\Impression\CookieImpressionRepository;
 use Konekt\Kampaign\Impression\Impressions;
@@ -59,9 +59,9 @@ class CookieImpressionRepositoryTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    private function findByCampaign(TrackableCampaignInterface $campaign)
+    private function findByAd(TrackableAdInterface $ad)
     {
-        return $this->repo->findImpressionsByCampaign($campaign);
+        return $this->repo->findImpressionsByAd($ad);
     }
 
 
@@ -71,11 +71,11 @@ class CookieImpressionRepositoryTest extends PHPUnit_Framework_TestCase
 
         $this->save($impressions);
 
-        $impressions = $this->findByCampaign($impressions->getCampaign());
+        $impressions = $this->findByAd($impressions->getAd());
 
         $this->assertEquals(1, $impressions->getForToday());
         $this->assertEquals(2, $impressions->getTotal());
-        $this->assertEquals(567, $impressions->getCampaignTrackingId());
+        $this->assertEquals(567, $impressions->getAdTrackingId());
     }
 
     public function testFindExistingImpressionsWithShowingDisabled()
@@ -84,7 +84,7 @@ class CookieImpressionRepositoryTest extends PHPUnit_Framework_TestCase
 
         $this->save($impressions);
 
-        $impressions = $this->findByCampaign($impressions->getCampaign());
+        $impressions = $this->findByAd($impressions->getAd());
 
         $this->assertEquals(1, $impressions->getForToday());
         $this->assertEquals(2, $impressions->getTotal());
@@ -94,7 +94,7 @@ class CookieImpressionRepositoryTest extends PHPUnit_Framework_TestCase
     public function testFindNonExistingImpressionsReturnsNull()
     {
         $c = Factory::cci(3, 10);
-        $impressions = $this->findByCampaign($c);
+        $impressions = $this->findByAd($c);
 
         $this->assertNull($impressions);
     }
@@ -104,12 +104,12 @@ class CookieImpressionRepositoryTest extends PHPUnit_Framework_TestCase
         $impressions = Factory::cici(3, 10, 1, 2);
         $this->save($impressions);
 
-        $impressions = $this->findByCampaign($impressions->getCampaign());
+        $impressions = $this->findByAd($impressions->getAd());
         $impressions->increment();
 
         $this->save($impressions);
 
-        $impressions = $this->findByCampaign($impressions->getCampaign());
+        $impressions = $this->findByAd($impressions->getAd());
 
         $this->assertEquals(2, $impressions->getForToday());
         $this->assertEquals(3, $impressions->getTotal());
@@ -118,14 +118,14 @@ class CookieImpressionRepositoryTest extends PHPUnit_Framework_TestCase
 
     public function testSaveNotExistingImpressions()
     {
-        $campaignId = 555;
-        $c = Factory::cci(3, 10, $campaignId);
-        $this->assertNull($this->findByCampaign($c));
+        $adId = 555;
+        $c = Factory::cci(3, 10, $adId);
+        $this->assertNull($this->findByAd($c));
 
-        $impressions = Factory::cici(3, 10, 6, 8, $campaignId);
+        $impressions = Factory::cici(3, 10, 6, 8, $adId);
         $this->save($impressions);
 
-        $impressions = $this->findByCampaign($impressions->getCampaign());
+        $impressions = $this->findByAd($impressions->getAd());
 
         $this->assertEquals(6, $impressions->getForToday());
         $this->assertEquals(8, $impressions->getTotal());
@@ -142,7 +142,7 @@ class CookieImpressionRepositoryTest extends PHPUnit_Framework_TestCase
         $this->repo->save($impressions);
     }
 
-    public function testSupportsMultipleCampaigns()
+    public function testSupportsMultipleAds()
     {
         $impressions1 = Factory::cici(3, 10, 6, 8, 1);
         $impressions2 = Factory::cici(3, 10, 6, 8, 2);
@@ -150,11 +150,11 @@ class CookieImpressionRepositoryTest extends PHPUnit_Framework_TestCase
         $this->save($impressions1);
         $this->save($impressions2);
 
-        $this->assertNotNull($this->findByCampaign($impressions1->getCampaign()));
-        $this->assertNotNull($this->findByCampaign($impressions2->getCampaign()));
+        $this->assertNotNull($this->findByAd($impressions1->getAd()));
+        $this->assertNotNull($this->findByAd($impressions2->getAd()));
     }
 
-    public function testMultipleCampaignsDataAreOk()
+    public function testMultipleAdsDataAreOk()
     {
         $i1 = Factory::cici(3, 10, 2, 8, 555);
         $i2 = Factory::cici(2, 8, 1, 3, 556);
@@ -162,15 +162,15 @@ class CookieImpressionRepositoryTest extends PHPUnit_Framework_TestCase
         $this->save($i1);
         $this->save($i2);
 
-        $impressions1 = $this->findByCampaign($i1->getCampaign());
-        $impressions2 = $this->findByCampaign($i2->getCampaign());
+        $impressions1 = $this->findByAd($i1->getAd());
+        $impressions2 = $this->findByAd($i2->getAd());
 
         $this->assertEquals(2, $impressions1->getForToday());
         $this->assertEquals(8, $impressions1->getTotal());
-        $this->assertEquals(555, $impressions1->getCampaignTrackingId());
+        $this->assertEquals(555, $impressions1->getAdTrackingId());
 
         $this->assertEquals(1, $impressions2->getForToday());
         $this->assertEquals(3, $impressions2->getTotal());
-        $this->assertEquals(556, $impressions2->getCampaignTrackingId());
+        $this->assertEquals(556, $impressions2->getAdTrackingId());
     }
 }

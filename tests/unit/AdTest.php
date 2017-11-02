@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Contains class CampaignTest
+ * Contains class AdTest
  *
  * @package     Konekt\Kampaign\Tests
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
@@ -16,9 +16,9 @@ namespace Konekt\Kampaign\Tests;
 use Konekt\Kampaign\Tests\Helper\Factory;
 use PHPUnit_Framework_TestCase;
 
-class CampaignTest extends PHPUnit_Framework_TestCase
+class AdTest extends PHPUnit_Framework_TestCase
 {
-    public function testCampaignActivation()
+    public function testAdActivation()
     {
         $c = Factory::cc(true);
         $this->assertTrue($c->isActive());
@@ -27,7 +27,7 @@ class CampaignTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($c->isActive());
     }
 
-    public function testCampaignInactivation()
+    public function testAdInactivation()
     {
         $c = Factory::cc(false);
         $this->assertFalse($c->isActive());

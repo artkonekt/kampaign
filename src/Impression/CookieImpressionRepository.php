@@ -12,7 +12,7 @@
 
 namespace Konekt\Kampaign\Impression;
 
-use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
+use Konekt\Kampaign\Ad\TrackableAdInterface;
 use Konekt\Kampaign\Common\DataResolver;
 
 /**
@@ -22,7 +22,7 @@ class CookieImpressionRepository implements ImpressionRepositoryInterface
 {
     const TOTAL_IMPRESSIONS_KEY = 't';
     const IS_SHOWING_ALLOWED_KEY = 'a';
-    const CAMPAIGN_ID_KEY = 'c';
+    const AD_ID_KEY = 'c';
 
     const COOKIE_LIFETIME_DAYS = 365;
 
@@ -43,14 +43,14 @@ class CookieImpressionRepository implements ImpressionRepositoryInterface
      *
      * @return Impressions
      */
-    public function findImpressionsByCampaign(TrackableCampaignInterface $campaign)
+    public function findImpressionsByAd(TrackableAdInterface $ad)
     {
-        $data = $this->getData($campaign->getTrackingId());
+        $data = $this->getData($ad->getTrackingId());
         if (empty($data)) {
             return null;
         }
 
-        return new Impressions($campaign, $this->getImpressionsForToday($data), $this->getTotalImpressions($data));
+        return new Impressions($ad, $this->getImpressionsForToday($data), $this->getTotalImpressions($data));
     }
 
     /**
@@ -65,7 +65,7 @@ class CookieImpressionRepository implements ImpressionRepositoryInterface
             self::TOTAL_IMPRESSIONS_KEY => $impressions->getTotal(),
         ];
 
-        $allData[$impressions->getCampaignTrackingId()] = $array;
+        $allData[$impressions->getAdTrackingId()] = $array;
 
         $encodedCookieData = $this->encode($allData);
 
@@ -73,7 +73,7 @@ class CookieImpressionRepository implements ImpressionRepositoryInterface
     }
 
     /**
-     * Returns whether impressions are globally enabled for any campaigns.
+     * Returns whether impressions are globally enabled for any ads.
      *
      * @return mixed
      */
@@ -122,25 +122,25 @@ class CookieImpressionRepository implements ImpressionRepositoryInterface
     }
 
     /**
-     * Returns an array which contains the data with the impressions data for a specific campaign.
+     * Returns an array which contains the data with the impressions data for a specific ad.
      *
-     * @param $campaignId
+     * @param $adId
      *
      * @return array
      */
-    private function getData($campaignId)
+    private function getData($adId)
     {
         $allData = $this->getAllData();
 
-        if (!array_key_exists($campaignId, $allData)) {
+        if (!array_key_exists($adId, $allData)) {
             return [];
         }
 
-        return $allData[$campaignId];
+        return $allData[$adId];
     }
 
     /**
-     * Returns the array from the cookie which contains the impressions data for all campaigns.
+     * Returns the array from the cookie which contains the impressions data for all ads.
      *
      * @return array
      */

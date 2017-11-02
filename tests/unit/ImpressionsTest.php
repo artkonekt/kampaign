@@ -17,7 +17,7 @@ use PHPUnit_Framework_TestCase;
 
 class ImpressionsTest extends PHPUnit_Framework_TestCase
 {
-    public function testNotYetViewedCampaignHasRemainingImpressions()
+    public function testNotYetViewedAdHasRemainingImpressions()
     {
         $impressions = Factory::cici(3, 10, 0, 0);
         $this->assertTrue($impressions->hasRemainingForToday());
@@ -77,10 +77,10 @@ class ImpressionsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(3, $impressions->getTotal());
     }
 
-    public function testCampaignTrackingId()
+    public function testAdTrackingId()
     {
         $impressions = Factory::cici(3, 10, 1, 2);
-        $this->assertEquals(1, $impressions->getCampaignTrackingId());
+        $this->assertEquals(1, $impressions->getAdTrackingId());
     }
 
     public function testImpressionsCanBeIncreasedToday()

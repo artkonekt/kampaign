@@ -11,7 +11,7 @@
  */
 
 namespace Konekt\Kampaign\Impression;
-use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
+use Konekt\Kampaign\Ad\TrackableAdInterface;
 
 
 /**
@@ -22,13 +22,13 @@ use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
 interface ImpressionRepositoryInterface
 {
     /**
-     * Returns the impressions for a campaign.
+     * Returns the impressions for a ad.
      *
-     * @param TrackableCampaignInterface $campaign
+     * @param TrackableAdInterface $ad
      *
      * @return Impressions
      */
-    public function findImpressionsByCampaign(TrackableCampaignInterface $campaign);
+    public function findImpressionsByAd(TrackableAdInterface $ad);
 
     /**
      * Saves an Impressions instance.
@@ -38,7 +38,7 @@ interface ImpressionRepositoryInterface
     public function save(Impressions $impressions);
 
     /**
-     * Returns whether impressions are globally enabled for any campaigns.
+     * Returns whether impressions are globally enabled for any ads.
      *
      * @return mixed
      */

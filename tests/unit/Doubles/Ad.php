@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains class Campaign
+ * Contains class Ad
  *
  * @package     Konekt\Kampaign
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
@@ -12,13 +12,13 @@
 
 namespace Konekt\Kampaign\Tests\Doubles;
 
-use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
+use Konekt\Kampaign\Ad\TrackableAdInterface;
 use DateTime;
 
 /**
- * Represents a campaign entity.
+ * Represents a ad entity.
  */
-class Campaign implements TrackableCampaignInterface
+class Ad implements TrackableAdInterface
 {
     /**
      * @var int
@@ -61,7 +61,7 @@ class Campaign implements TrackableCampaignInterface
     private $maxImpressionsPerDay;
 
     /**
-     * Campaign constructor.
+     * Ad constructor.
      *
      * @param int      $id
      * @param string   $name
@@ -94,7 +94,7 @@ class Campaign implements TrackableCampaignInterface
     }
 
     /**
-     * Returns the ID of the campaign.
+     * Returns the ID of the ad.
      *
      * @return int
      */
@@ -104,7 +104,7 @@ class Campaign implements TrackableCampaignInterface
     }
 
     /**
-     * Returns whether the campaign is active.
+     * Returns whether the ad is active.
      *
      * @return bool
      */
@@ -114,7 +114,7 @@ class Campaign implements TrackableCampaignInterface
     }
 
     /**
-     * Activates the campaign.
+     * Activates the ad.
      */
     public function activate()
     {
@@ -122,7 +122,7 @@ class Campaign implements TrackableCampaignInterface
     }
 
     /**
-     * Inactivates the campaign.
+     * Inactivates the ad.
      */
     public function inactivate()
     {
@@ -130,7 +130,7 @@ class Campaign implements TrackableCampaignInterface
     }
 
     /**
-     * Returns the max impressions per day for a user aka. how many times the campaign can be shown for a user a day.
+     * Returns the max impressions per day for a user aka. how many times the ad can be shown for a user a day.
      *
      * @return int
      */
@@ -140,7 +140,7 @@ class Campaign implements TrackableCampaignInterface
     }
 
     /**
-     * Returns the max overall impressions for a user aka. how many times the campaign can be shown for a user.
+     * Returns the max overall impressions for a user aka. how many times the ad can be shown for a user.
      *
      * @return int
      */
@@ -150,8 +150,8 @@ class Campaign implements TrackableCampaignInterface
     }
 
     /**
-     * Returns the tracking ID of the campaign. It should be unique.
-     * A common way to implement it is to just return the numeric ID of the campaign entity.
+     * Returns the tracking ID of the ad. It should be unique.
+     * A common way to implement it is to just return the numeric ID of the ad entity.
      *
      * @return string
      */

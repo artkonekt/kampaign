@@ -11,17 +11,17 @@
  */
 
 namespace Konekt\Kampaign\Impression;
-use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
+use Konekt\Kampaign\Ad\TrackableAdInterface;
 
 /**
- * Entity for impressions of a user for a specific campaign.
+ * Entity for impressions of a user for a specific ad.
  */
 class Impressions
 {
     /**
-     * @var TrackableCampaignInterface
+     * @var TrackableAdInterface
      */
-    private $campaign;
+    private $ad;
 
     /**
      * @var int
@@ -36,35 +36,35 @@ class Impressions
     /**
      * UserImpressions constructor.
      *
-     * @param TrackableCampaignInterface                                         $campaign
-     * @param int                                                                $today
-     * @param int                                                                $total
+     * @param TrackableAdInterface $ad
+     * @param int                  $today
+     * @param int                  $total
      */
-    public function __construct(TrackableCampaignInterface $campaign, $today, $total)
+    public function __construct(TrackableAdInterface $ad, $today, $total)
     {
-        $this->campaign = $campaign;
+        $this->ad = $ad;
         $this->today = $today;
         $this->total = $total;
     }
 
     /**
-     * Return the ID of the campaign.
+     * Return the ID of the ad.
      *
      * @return int
      */
-    public function getCampaignTrackingId()
+    public function getAdTrackingId()
     {
-        return $this->campaign->getTrackingId();
+        return $this->ad->getTrackingId();
     }
 
     /**
-     * Returns the campaign for the impressions.
+     * Returns the ad for the impressions.
      *
-     * @return \Konekt\Kampaign\Campaign
+     * @return \Konekt\Kampaign\Ad
      */
-    public function getCampaign()
+    public function getAd()
     {
-        return $this->campaign;
+        return $this->ad;
     }
 
     /**
@@ -77,7 +77,7 @@ class Impressions
     }
 
     /**
-     * Return whether the impression for today can be increased. In other words it returns whether we can show the campaign
+     * Return whether the impression for today can be increased. In other words it returns whether we can show the ad
      * today for our user.
      *
      * @return bool
@@ -88,7 +88,7 @@ class Impressions
     }
 
     /**
-     * Returns whether the campaign still can be shown for the user today.
+     * Returns whether the ad still can be shown for the user today.
      *
      * @return bool
      */
@@ -98,7 +98,7 @@ class Impressions
     }
 
     /**
-     * Returns whether the campaign still can be shown for the user now or in the future.
+     * Returns whether the ad still can be shown for the user now or in the future.
      *
      * @return bool
      */
@@ -128,14 +128,14 @@ class Impressions
     }
 
     /**
-     * Returns the count of remaining impressions for the user for today aka. how many times the campaign can still be
+     * Returns the count of remaining impressions for the user for today aka. how many times the ad can still be
      * shown for the user today.
      *
      * @return int
      */
     private function getRemainingForToday()
     {
-        $maxImpressionForToday = $this->campaign->getMaxImpressionPerDay();
+        $maxImpressionForToday = $this->ad->getMaxImpressionPerDay();
         $remainingForToday = $maxImpressionForToday - $this->getForToday();
 
         if ($remainingForToday > $this->getRemainingTotal()) {
@@ -146,12 +146,12 @@ class Impressions
     }
 
     /**
-     * Returns how many overall impressions the user still has for the campaign.
+     * Returns how many overall impressions the user still has for the ad.
      *
      * @return int
      */
     private function getRemainingTotal()
     {
-        return ($this->campaign->getMaxImpressions() - $this->getTotal());
+        return ($this->ad->getMaxImpressions() - $this->getTotal());
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains class CampaignLoader
+ * Contains class AdLoader
  *
  * @package     Konekt\Kampaign\Prototype
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
@@ -10,43 +10,43 @@
  * @version     2015-12-15
  */
 
-namespace Konekt\Kampaign\Campaign;
+namespace Konekt\Kampaign\Ad;
 
 use Konekt\Kampaign\Common\DataResolver;
 
 /**
- * Class CampaignLoader
+ * Class AdLoader
  *
  * @package Konekt\Kampaign\Prototype
  */
-class CampaignLoader
+class AdLoader
 {
-    /** @var CampaignRepositoryInterface */
-    private $campaignRepository;
+    /** @var AdRepositoryInterface */
+    private $adRepository;
 
     /** @var DataResolver */
     private $dataResolver;
 
     /**
-     * CampaignLoader constructor.
+     * AdLoader constructor.
      *
-     * @param $campaignRepository
+     * @param $adRepository
      * @param $dataResolver
      */
-    public function __construct(CampaignRepositoryInterface $campaignRepository, DataResolver $dataResolver)
+    public function __construct(AdRepositoryInterface $adRepository, DataResolver $dataResolver)
     {
-        $this->campaignRepository = $campaignRepository;
+        $this->adRepository = $adRepository;
         $this->dataResolver = $dataResolver;
     }
 
     public function getCurrentTrackable()
     {
-        return $this->campaignRepository->findCurrent();
+        return $this->adRepository->findCurrent();
     }
 
     public function getTracked()
     {
-        $campaignId = $this->dataResolver->getCampaignId();
-        return $this->campaignRepository->findById($campaignId);
+        $adId = $this->dataResolver->getAdId();
+        return $this->adRepository->findById($adId);
     }
 }

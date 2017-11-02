@@ -22,7 +22,7 @@ class DataResolver
 {
 
     const COOKIE_NAME = 'nci';
-    const CAMPAIGN_ID_KEY = 'id';
+    const AD_ID_KEY = 'id';
     const DEBUG_MODE_KEY = 'kmpdbg';
 
     /** @var array */
@@ -49,15 +49,15 @@ class DataResolver
     /**
      * @return mixed
      */
-    public function getCampaignId()
+    public function getAdId()
     {
-        if (isset($_POST[self::CAMPAIGN_ID_KEY])) {
-            $campaignId = $_POST[self::CAMPAIGN_ID_KEY];
-        } elseif (isset($_GET[self::CAMPAIGN_ID_KEY])) {
-            $campaignId = $_GET[self::CAMPAIGN_ID_KEY];
+        if (isset($_POST[self::AD_ID_KEY])) {
+            $adId = $_POST[self::AD_ID_KEY];
+        } elseif (isset($_GET[self::AD_ID_KEY])) {
+            $adId = $_GET[self::AD_ID_KEY];
         }
 
-        return $campaignId;
+        return $adId;
     }
 
     /**

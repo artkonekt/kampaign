@@ -13,7 +13,7 @@
 namespace Konekt\Kampaign\Impression;
 
 
-use Konekt\Kampaign\Campaign\TrackableCampaignInterface;
+use Konekt\Kampaign\Ad\TrackableAdInterface;
 
 /**
  * Class ImpressionTracker
@@ -36,20 +36,20 @@ class ImpressionTracker
     }
 
     /**
-     * Loads the impressions object for the campaign from the repository, if it doesn't yet exists, it creates it.
+     * Loads the impressions object for the ad from the repository, if it doesn't yet exists, it creates it.
      *
      * TODO: smelly. do the creation in the repo? (probably not a good idea)?
      *
-     * @param TrackableCampaignInterface $campaign
+     * @param TrackableAdInterface $ad
      *
      * @return Impressions
      */
-    public function loadOrCreateFor(TrackableCampaignInterface $campaign)
+    public function loadOrCreateFor(TrackableAdInterface $ad)
     {
-        $impressions = $this->impressionsRepository->findImpressionsByCampaign($campaign);
+        $impressions = $this->impressionsRepository->findImpressionsByAd($ad);
 
         if (!$impressions) {
-            $impressions = new Impressions($campaign, 0, 0);
+            $impressions = new Impressions($ad, 0, 0);
             $this->impressionsRepository->save($impressions);
         }
 
@@ -66,7 +66,7 @@ class ImpressionTracker
     }
 
     /**
-     * Disables all future impressions of all campaigns.
+     * Disables all future impressions of all ads.
      */
     public function disableFutureImpressions()
     {

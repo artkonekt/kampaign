@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains interface TrackableCampaignInterface
+ * Contains interface TrackableAdInterface
  *
  * @package     Konekt\Kampaign
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
@@ -10,33 +10,33 @@
  * @version     2015-12-09
  */
 
-namespace Konekt\Kampaign\Campaign;
+namespace Konekt\Kampaign\Ad;
 
 
 /**
- * Interface TrackableCampaignInterface
+ * Interface TrackableAdInterface
  *
- * @package Konekt\Kampaign\Campaign
+ * @package Konekt\Kampaign\Ad
  */
-interface TrackableCampaignInterface
+interface TrackableAdInterface
 {
     /**
-     * Returns the tracking ID of the campaign. It should be unique.
-     * A common way to implement it is to just return the numeric ID of the campaign entity.
+     * Returns the tracking ID of the ad. It should be unique.
+     * A common way to implement it is to just return the numeric ID of the ad entity.
      *
      * @return string
      */
     public function getTrackingId();
 
     /**
-     * Returns the max impressions per day for a user aka. how many times the campaign can be shown for a user a day.
+     * Returns the max impressions per day for a user aka. how many times the ad can be shown for a user a day.
      *
      * @return int
      */
     public function getMaxImpressionPerDay();
 
     /**
-     * Returns the max overall impressions for a user aka. how many times the campaign can be shown for a user.
+     * Returns the max overall impressions for a user aka. how many times the ad can be shown for a user.
      *
      * @return int
      */

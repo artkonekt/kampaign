@@ -3,12 +3,12 @@
 include 'init.php';
 
 if ($impressionTracker->areImpressionsEnabled()) {
-    $campaign = $campaignRepository->findCurrent();
+    $ad = $adRepository->findCurrent();
     $ads = [
         [
-            'id' => $campaign->getId(),
+            'id' => $ad->getId(),
             'timeout' => 2,
-            'content' => $campaign->getContent(),
+            'content' => $ad->getContent(),
             'renderer' => 'simple',
         ]
     ];
