@@ -23,7 +23,6 @@ class DataResolver
 
     const COOKIE_NAME = 'nci';
     const CAMPAIGN_ID_KEY = 'kampaigncid';
-    const SUBSCRIBER_EMAIL_KEY = 'kampaignemail';
     const DEBUG_MODE_KEY = 'kmpdbg';
 
     /** @var array */
@@ -47,15 +46,6 @@ class DataResolver
         $this->post = $post;
         $this->cookie = $cookie;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->post[self::SUBSCRIBER_EMAIL_KEY];
-    }
-
     /**
      * @return mixed
      */
