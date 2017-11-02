@@ -7,7 +7,6 @@
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary
  * @since       2015-12-15
- * @version     2015-12-15
  */
 
 namespace Konekt\Kampaign\Ad;
