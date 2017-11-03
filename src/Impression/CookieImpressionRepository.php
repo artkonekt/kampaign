@@ -23,18 +23,21 @@ class CookieImpressionRepository implements ImpressionRepositoryInterface
     const IS_SHOWING_ALLOWED_KEY = 'a';
     const AD_ID_KEY = 'c';
 
-    const COOKIE_LIFETIME_DAYS = 365;
-
+    /** @var DataResolver */
     private $dataResolver;
+
+    /** @var int */
+    private $cookieLifetime;
 
     /**
      * CookieImpressionsRepository constructor.
      *
      * @param DataResolver $dataResolver
      */
-    public function __construct(DataResolver $dataResolver)
+    public function __construct(DataResolver $dataResolver, $cookieLifetime = 365)
     {
         $this->dataResolver = $dataResolver;
+        $this->cookieLifetime = $cookieLifetime;
     }
 
     /**
@@ -171,7 +174,7 @@ class CookieImpressionRepository implements ImpressionRepositoryInterface
      */
     private function getCookieLifetime()
     {
-        return self::COOKIE_LIFETIME_DAYS * 24 * 60 * 60;
+        return $this->cookieLifetime * 24 * 60 * 60;
     }
 
     /**
