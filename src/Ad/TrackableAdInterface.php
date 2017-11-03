@@ -47,11 +47,4 @@ interface TrackableAdInterface
      * @return string
      */
     public function getContent();
-
-    /**
-     * Returns the list id.
-     *
-     * @return mixed
-     */
-    public function getListId();
 }

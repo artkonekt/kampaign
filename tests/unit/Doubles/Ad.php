@@ -168,14 +168,4 @@ class Ad implements TrackableAdInterface
     {
         return str_replace('#ad_no#', $this->getId(), file_get_contents(__DIR__ . '/../../../examples/template.php'));
     }
-
-    /**
-     * Returns the list id.
-     *
-     * @return mixed
-     */
-    public function getListId()
-    {
-        return null;
-    }
 }
