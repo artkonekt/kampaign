@@ -9,7 +9,10 @@ if ($impressionTracker->areImpressionsEnabled()) {
             'id' => $ad->getId(),
             'timeout' => 2,
             'content' => $ad->getContent(),
-            'renderer' => 'simple',
+            'renderer' => [
+                'name' => 'SimpleRenderer',
+                'script' => '/konekt/kampaign/src/resources/js/renderers/simple.js'
+            ]
         ]
     ];
 } else {
