@@ -47,13 +47,18 @@ Konekt.Ad = {
         jQuery.event.trigger(Konekt.AdEvents.AD_READY, [this]);
     },
 
-    loadRenderer: function (renderer) {
-        if (typeof window[renderer] === 'undefined') {
-            $.getScript("../src/resources/js/renderers/" + renderer + ".js", function () {
-                rendererName = renderer.charAt(0).toUpperCase() + renderer.slice(1) + 'Renderer';
-                this.setRenderer(window[rendererName]);
+    loadRenderer: function (rendererData) {
+        object = rendererData.name;
+
+        if (typeof window[object] === 'undefined') {
+            // We don't have the renderer object in the global environment,
+            // we must load the script which contains it.
+            $.getScript(rendererData.script, function () {
+                this.setRenderer(window[object]);
             }.bind(this))
         } else {
+            // We already have the renderer object in the global environment,
+            // we set the property.
             this.setRenderer(window[rendererName])
         }
     }
