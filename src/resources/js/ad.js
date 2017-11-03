@@ -140,35 +140,18 @@ Konekt.AdManager = {
         this.setupListeners();
 
         this.tracker = Konekt.AdTracker;
-
         this.tracker.init(trackerSettings);
+
         var kad = Object.create(Konekt.Ad);
         kad.init(ads[0]);
 
         this.ads.push(kad);
-
-        // We don't support yet multiple ads, implement when needed.
-        // ads.forEach(function (ad) {
-        //     var kad = Object.create(Konekt.Ad);
-        //     kad.init(ad);
-        //     this.ads.push(kad);
-        // }.bind(this));
-    },
-
-    currentlyOpenedAd: function () {
-        return this.ads.find(function (ad) {
-            return (ad.status === ad.validStatuses.OPENED);
-        });
     },
 
     getAdById: function (id) {
         return this.ads.find(function (ad) {
             return (ad.id === id);
         });
-    },
-
-    disableCurrentAd: function () {
-        this.currentlyOpenedAd().disable();
     },
 
     setupListeners: function () {
