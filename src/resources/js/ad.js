@@ -136,11 +136,15 @@ Konekt.AdManager = {
     },
 
     setup: function (ads, trackerSettings) {
-        this.tracker = Konekt.AdTracker;
-        this.tracker.init(trackerSettings);
 
+        this.setupListeners();
+
+        this.tracker = Konekt.AdTracker;
+
+        this.tracker.init(trackerSettings);
         var kad = Object.create(Konekt.Ad);
         kad.init(ads[0]);
+
         this.ads.push(kad);
 
         // We don't support yet multiple ads, implement when needed.
@@ -149,8 +153,6 @@ Konekt.AdManager = {
         //     kad.init(ad);
         //     this.ads.push(kad);
         // }.bind(this));
-
-        this.setupListeners();
     },
 
     currentlyOpenedAd: function () {
