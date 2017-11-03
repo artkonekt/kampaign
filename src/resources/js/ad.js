@@ -59,7 +59,7 @@ Konekt.Ad = {
         } else {
             // We already have the renderer object in the global environment,
             // we set the property.
-            this.setRenderer(window[rendererName])
+            this.setRenderer(window[object]);
         }
     }
 };
