@@ -2,7 +2,6 @@
 /**
  * Contains class ImpressionTracker
  *
- * @package     Konekt\Kampaign\Impression
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary
@@ -17,7 +16,6 @@ use Konekt\Kampaign\Ad\TrackableAdInterface;
 /**
  * Class ImpressionTracker
  *
- * @package Konekt\Kampaign\Impression
  */
 class ImpressionTracker
 {

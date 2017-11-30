@@ -2,7 +2,6 @@
 /**
  * Contains interface AdRepositoryInterface
  *
- * @package     Konekt\Kampaign\Prototype
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary
@@ -15,7 +14,6 @@ namespace Konekt\Kampaign\Ad;
 /**
  * Interface AdRepositoryInterface
  *
- * @package Konekt\Kampaign\Ad
  */
 interface AdRepositoryInterface
 {

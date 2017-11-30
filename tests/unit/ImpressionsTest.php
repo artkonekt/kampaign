@@ -2,7 +2,6 @@
 /**
  * Contains class ImpressionsTest
  *
- * @package     Konekt\Kampaign\Tests
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary

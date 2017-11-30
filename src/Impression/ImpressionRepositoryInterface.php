@@ -2,7 +2,6 @@
 /**
  * Contains interface ImpressionsRepositoryInterface
  *
- * @package     Konekt\Kampaign
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary
@@ -16,7 +15,6 @@ use Konekt\Kampaign\Ad\TrackableAdInterface;
 /**
  * Interface ImpressionsRepositoryInterface.
  *
- * @package Konekt\Kampaign
  */
 interface ImpressionRepositoryInterface
 {

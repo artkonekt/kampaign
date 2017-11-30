@@ -2,7 +2,6 @@
 /**
  * Contains class DataResolver
  *
- * @package     Konekt\Kampaign\Prototype
  * @copyright   Copyright (c) 2015 Artkonekt Rulez Srl
  * @author      Lajos Fazakas <lajos@artkonekt.com>
  * @license     Proprietary
@@ -15,7 +14,6 @@ namespace Konekt\Kampaign\Common;
 /**
  * Class DataResolver
  *
- * @package Konekt\Kampaign\Prototype
  */
 class DataResolver
 {
